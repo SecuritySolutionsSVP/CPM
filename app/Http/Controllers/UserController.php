@@ -9,4 +9,8 @@ class UserController extends Controller
     function userView() {
         return view('user-view');
     }
+
+    function profileView() {
+        return view('profile-settings');
+    }
 }

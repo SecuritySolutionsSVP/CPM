@@ -31,3 +31,4 @@ Route::get('/', [PasswordController::class, "notificationPasswordsView"]);
 Route::get('/password', [PasswordController::class, "allPasswordsView"]);
 
 Route::get('/users', [UserController::class, "userView"]);
+Route::get('/user/{id}', [UserController::class, "profileView"]);
