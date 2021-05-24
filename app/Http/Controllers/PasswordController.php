@@ -9,4 +9,8 @@ class PasswordController extends Controller
     function notificationPasswordsView() {
         return view('dashboard');
     }
+
+    function allPasswordsView() {
+        return view('passwords-view');
+    }
 }

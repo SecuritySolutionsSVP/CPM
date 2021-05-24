@@ -27,3 +27,4 @@ Route::get('/usergroups/{id}/passwords', [UserGroupController::class, "groupPass
 Route::get('/user/{id}/passwords', [UserGroupController::class, "myPasswordsView"]);
 
 Route::get('/', [PasswordController::class, "notificationPasswordsView"]);
+Route::get('/password', [PasswordController::class, "allPasswordsView"]);
