@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "917812329af594a8389cc7ff59791fad",
+    "content-hash": "7d0c4ba7c48173a060a34bfa006204b7",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1199,7 +1199,7 @@
                     ],
                     "aliases": {
                         "Form": "Collective\\Html\\FormFacade",
-                        "Html": "Collective\\Html\\HtmlFacade",
+                        "Html": "Collective\\Html\\HtmlFacade"
                     }
                 }
             },
