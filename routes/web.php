@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserGroupController;
 use App\Http\Controllers\PasswordController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,3 +29,5 @@ Route::get('/user/{id}/passwords', [UserGroupController::class, "myPasswordsView
 
 Route::get('/', [PasswordController::class, "notificationPasswordsView"]);
 Route::get('/password', [PasswordController::class, "allPasswordsView"]);
+
+Route::get('/users', [UserController::class, "userView"]);
