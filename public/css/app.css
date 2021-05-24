@@ -1,1 +1,27 @@
-
+.login {
+  position: relative;
+}
+.login .logo {
+  height: 200px;
+  margin: 0 auto;
+}
+.login__form {
+  position: absolute;
+  width: 100%;
+  display: inline-block;
+  padding: 100px;
+  background-color: #90A8EE;
+  text-align: center;
+}
+.login__form label {
+  margin: 0 auto;
+  width: 50%;
+  display: block;
+  color: white;
+}
+.login__form input {
+  margin: 0 auto;
+  width: 50%;
+  display: block;
+  margin-bottom: 10px;
+}
