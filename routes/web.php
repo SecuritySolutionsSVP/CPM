@@ -24,3 +24,4 @@ Route::get('/login', [AuthController::class, "loginView"]);
 
 Route::get('/usergroups', [UserGroupController::class, "allUsergroupsView"]);
 Route::get('/usergroups/{id}/passwords', [UserGroupController::class, "groupPasswordsView"]);
+Route::get('/user/{id}/passwords', [UserGroupController::class, "myPasswordsView"]);

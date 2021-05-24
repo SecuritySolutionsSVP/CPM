@@ -13,4 +13,8 @@ class UserGroupController extends Controller
     function groupPasswordsView () {
         return view('usergroup-passwords-view');
     }
+
+    function myPasswordsView () {
+        return view('user-password-view');
+    }
 }
