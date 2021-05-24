@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserGroupController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,3 +33,5 @@ Route::get('/password', [PasswordController::class, "allPasswordsView"]);
 
 Route::get('/users', [UserController::class, "userView"]);
 Route::get('/user/{id}', [UserController::class, "profileView"]);
+
+Route::get('/site-settings', [SiteController::class, "siteSettingsView"]);
