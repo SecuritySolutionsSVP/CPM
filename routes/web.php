@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserGroupController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,3 +20,6 @@ Route::get('/', function () {
 });
 
 Route::get('/login', [AuthController::class, "loginView"]);
+
+
+Route::get('/usergroups', [UserGroupController::class, "allUsergroupsView"]);
