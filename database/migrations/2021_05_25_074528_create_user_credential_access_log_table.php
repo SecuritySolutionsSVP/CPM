@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserPasswordTable extends Migration
+class CreateUserPasswordAccessLogTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateUserPasswordTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_password_privileges', function (Blueprint $table) {
+        Schema::create('user_credential_access_log', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('password_id')->constrained('passwords');
-            $table->unique(['user_id', 'password_id']);
+            $table->foreignId('user_credential_access_log')->constrained('credentials');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateUserPasswordTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_password_privileges');
+        Schema::dropIfExists('user_password_access_log');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePasswordsTable extends Migration
+class CreateCredentialsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreatePasswordsTable extends Migration
      */
     public function up()
     {
-        Schema::create('passwords', function (Blueprint $table) {
+        Schema::create('credentials', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('password_group_id')->constrained('password_groups');
+            $table->foreignId('credential_group_id')->constrained('credential_groups');
             $table->string('username');
             $table->string('value');
             $table->boolean('is_sensitive');
+            $table->timestamp('password_last_updated_at');
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ class CreatePasswordsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('passwords');
+        Schema::dropIfExists('credentials');
     }
 }
