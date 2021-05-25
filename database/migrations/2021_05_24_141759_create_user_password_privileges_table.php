@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGroupPasswordTable extends Migration
+class CreateUserPasswordTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateGroupPasswordTable extends Migration
      */
     public function up()
     {
-        Schema::create('group_password', function (Blueprint $table) {
+        Schema::create('user_password_privileges', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('group_id')->constrained('groups');
+            $table->foreignId('user_id')->constrained('users');
             $table->foreignId('password_id')->constrained('passwords');
+            $table->unique(['user_id', 'password_id']);
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateGroupPasswordTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('group_password');
+        Schema::dropIfExists('user_password_privileges');
     }
 }
