@@ -17,7 +17,7 @@ class CreateCredentialsTable extends Migration
             $table->id();
             $table->foreignId('credential_group_id')->constrained('credential_groups');
             $table->string('username');
-            $table->string('value');
+            $table->string('password');
             $table->boolean('is_sensitive');
             $table->timestamp('password_last_updated_at');
             $table->timestamps();
