@@ -18,7 +18,7 @@ class CreateUserCredentialPrivilegesTable extends Migration
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('credential_id')->constrained('credentials');
             $table->unique(['user_id', 'credential_id']);
-            $table->timestamps();
+            $table->timestampsTz();
         });
     }
 

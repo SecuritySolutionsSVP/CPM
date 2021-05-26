@@ -17,8 +17,8 @@ class CreateTwoFactorTokensTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users');
             $table->string('token');
-            $table->timestamp('expiration');
-            $table->timestamps();
+            $table->timestampTz('expiration');
+            $table->timestampsTz();
         });
     }
 

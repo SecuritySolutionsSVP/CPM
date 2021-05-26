@@ -19,8 +19,8 @@ class CreateCredentialsTable extends Migration
             $table->string('username');
             $table->string('password');
             $table->boolean('is_sensitive');
-            $table->timestamp('password_last_updated_at');
-            $table->timestamps();
+            $table->timestampTz('password_last_updated_at')->nullable();
+            $table->timestampsTz();
         });
     }
 

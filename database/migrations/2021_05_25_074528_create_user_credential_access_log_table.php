@@ -17,7 +17,7 @@ class CreateUserCredentialAccessLogTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('user_credential_access_log')->constrained('credentials');
-            $table->timestamps();
+            $table->timestampsTz();
         });
     }
 
