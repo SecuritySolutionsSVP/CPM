@@ -28,7 +28,7 @@ Route::get('/login', [AuthController::class, "loginView"])->name("login");
     Route::get('/usergroups/{id}/passwords', [UserGroupController::class, "groupPasswordsView"]);
     Route::get('/user/{id}/passwords', [UserGroupController::class, "myPasswordsView"]);
     
-    Route::get('/', [PasswordController::class, "notificationPasswordsView"])->middleware('auth');
+    Route::get('/', [PasswordController::class, "notificationPasswordsView"]);
     Route::get('/password', [PasswordController::class, "allPasswordsView"]);
     
     Route::get('/users', [UserController::class, "userView"]);
