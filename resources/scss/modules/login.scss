@@ -20,9 +20,21 @@
         }
         input{
             margin: 0 auto;
-            width: 50%;
+            width: 300px;
             display: block;
             margin-bottom: 10px;
+            max-width: 100%;
+        }
+    }
+
+    &__remember-me{
+        label{
+            display: inline;
+            width: auto;
+        }
+        input{
+            display: inline;
+            width: auto;
         }
     }
 }

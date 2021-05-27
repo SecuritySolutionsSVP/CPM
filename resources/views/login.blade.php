@@ -14,6 +14,10 @@
             {{ Form::label('password', 'Password') }}
             {{ Form::password('password') }}
         </p>
+        <p class="login__remember">
+            {{ Form::label('Remember me', 'Remember me') }}
+            {{ Form::checkbox('Remember me') }}
+        </p>
 
         <p>{{ Form::submit('Login') }}</p>
         {{ Form::close() }}

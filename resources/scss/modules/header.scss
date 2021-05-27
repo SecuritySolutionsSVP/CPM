@@ -1,0 +1,33 @@
+.header {
+    background-color: #90a8ee;
+    height: 100px;
+    width: 100%;
+
+    .logo {
+        display: inline-block;
+        height: 100%;
+    }
+
+    &__navigation {
+        display: inline-block;
+        float: right;
+        text-align: right;
+        height: 100px;
+        &__item {
+            display: inline-block;
+            height: 100%;
+            a {
+                line-height: 100px;
+                height: 100%;
+                display: block;
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
+            &:hover {
+                background-color: royalblue;
+                color: white;
+            }
+        }
+    }
+}
