@@ -21,7 +21,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/login', [AuthController::class, "loginView"])->name("login");
+Route::get('/login', [AuthController::class, 'loginView'])->name('login');
+Route::post('/login', [AuthController::class, 'authenticate']);
+Route::get('/logout', [AuthController::class, 'logout']);
 
 // Route::middleware(['auth'])->group(function() {
     Route::get('/usergroups', [UserGroupController::class, "allUsergroupsView"]);
