@@ -1,0 +1,10 @@
+//module imports
+@import "modules/login.scss";
+@import "modules/header.scss";
+@import "modules/password-list.scss";
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
