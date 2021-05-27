@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserGroupController;
+use App\Http\Controllers\GroupController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SiteController;
@@ -28,6 +29,12 @@ Route::get('/login', [AuthController::class, "loginView"])->name("login");
     Route::get('/usergroups/{id}/passwords', [UserGroupController::class, "groupPasswordsView"]);
     Route::get('/user/{id}/passwords', [UserGroupController::class, "myPasswordsView"]);
     
+    // Group
+    Route::get('/groups', [GroupController::class, "groupsView"]);
+    Route::post('/usergroups/create', [GroupController::class, "create"]);
+    Route::put('/usergroups/update', [GroupController::class, "update"]);
+    Route::delete('/usergroups/delete',[GroupController::class, "delete"]);
+
     Route::get('/', [PasswordController::class, "notificationPasswordsView"]);
     Route::get('/password', [PasswordController::class, "allPasswordsView"]);
     
