@@ -25,14 +25,18 @@ Route::get('/login', [AuthController::class, "loginView"])->name("login");
 
 // Route::middleware(['auth'])->group(function() {
     Route::get('/usergroups', [UserGroupController::class, "allUsergroupsView"]);
-    Route::get('/usergroups/{id}/passwords', [UserGroupController::class, "groupPasswordsView"]);
-    Route::get('/user/{id}/passwords', [UserGroupController::class, "myPasswordsView"]);
+    Route::get('/usergroups/{id}/passwords', [UserGroupController::class, "groupPasswordsView"])->whereNumber('id');
+    Route::get('/user/{id}/passwords', [UserGroupController::class, "myPasswordsView"])->whereNumber('id');
     
     Route::get('/', [PasswordController::class, "notificationPasswordsView"]);
     Route::get('/password', [PasswordController::class, "allPasswordsView"]);
     
+    //User
     Route::get('/users', [UserController::class, "userView"]);
-    Route::get('/user/{id}', [UserController::class, "profileView"]);
+    Route::get('/user/{id}', [UserController::class, "profileView"])->whereNumber('id');
+    Route::post('/user/create', [UserController::class, "create"]);
+    Route::put('/user/update', [UserController::class, "update"]);
+    Route::delete('/user/delete',[UserController::class, "delete"]);
     
     Route::get('/site-settings', [SiteController::class, "siteSettingsView"]);
     
