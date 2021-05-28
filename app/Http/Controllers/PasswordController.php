@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Credential;
 use Illuminate\Http\Request;
 
 class PasswordController extends Controller
@@ -11,6 +12,8 @@ class PasswordController extends Controller
     }
 
     function allPasswordsView() {
-        return view('passwords-view');
+        return view('passwords-view', [
+            "credentials" => Credential::all(),
+        ]);
     }
 }

@@ -3,7 +3,7 @@
         Passwords
     @stop
 
-    <x-password-list>
+    <x-password-list :credentials="$credentials">
         
     </x-password-list>
 </x-layout>

@@ -1,12 +1,12 @@
 <div class="password-list">
     <div class="password-list__list">
-        @for ($i = 0; $i < 10; $i++)
+        @foreach ($credentials as $credential)
             <div class="password-list__list__item clearfix">
                 <div class="password-list__list__item__name">
-                    Password for Web server {{ $i + 1 }}
+                    Password for {{ $credential->credentialGroup->name }}
                 </div>
                 <div class="password-list__list__item__created">
-                    <a href="#">09:35 - 26/05/2021</a>
+                    <a href="#">{{ $credential->created_at->diffForHumans() }}</a>
                 </div>
                 <div class="password-list__list__item__icons">
                     <i class="fas fa-user password-list__list__item__icons__get-username"></i>
@@ -14,7 +14,7 @@
                     <i class="fas fa-cogs password-list__list__item__icons__open-settings"></i>
                 </div>
             </div>
-        @endfor
+        @endforeach
 
     </div>
 </div>
@@ -43,5 +43,6 @@
         <a class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" href="#">See more...</a>
     </div>
 </div>
+
 <div class="password-list__modal__overlay">
 </div>
