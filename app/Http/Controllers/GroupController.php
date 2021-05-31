@@ -21,10 +21,10 @@ class GroupController extends Controller
     { 
         $validator = Validator::make($request->all(), 
         [ 
-            'name' => 'required',
+            'name' => 'required|unique:groups,name',
         ]);
 
-        $input = $request->all();
+        $input = $request->only('name');
 
         if ($validator->fails()) { 
             return redirect('/groups')->with('error', 'Gruppe eksisterer');          
@@ -44,10 +44,10 @@ class GroupController extends Controller
         $validator = Validator::make($request->all(), 
         [ 
             'id' => 'required', 
-            'name' => 'required',
+            'name' => 'required|unique:groups,name',
         ]);
 
-        $input = $request->all(); 
+        $input = $request->only('name');
 
         if ($validator->fails()) { 
             return redirect('/group/ret')->with('error', 'Gruppe eksisterer');          
