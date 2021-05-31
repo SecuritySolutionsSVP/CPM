@@ -49,7 +49,7 @@ class RoleController extends Controller
             'priviledge_level' => 'required',
         ]);
 
-        $input = $request->all(); 
+        $input = $request->only('name', 'priviledge_level');
 
         if ($validator->fails()) { 
             return redirect('/role/ret')->with('error', 'Rolle eksisterer');          
