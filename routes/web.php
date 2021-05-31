@@ -34,9 +34,11 @@ Route::get('/login', [AuthController::class, "loginView"])->name("login");
     //User
     Route::get('/users', [UserController::class, "userView"]);
     Route::get('/user/{id}', [UserController::class, "profileView"])->whereNumber('id');
-    Route::post('/user/create', [UserController::class, "create"]);
-    Route::put('/user/update', [UserController::class, "update"]);
-    Route::delete('/user/delete',[UserController::class, "delete"]);
+    Route::post('/user', [UserController::class, "create"]);
+    Route::put('/user', [UserController::class, "update"]);
+    Route::put('/user/password', [UserController::class, "updatePassword"]);
+    Route::delete('/user',[UserController::class, "delete"]);
+    Route::delete('/user/force',[UserController::class, "forceDelete"]);
     
     Route::get('/site-settings', [SiteController::class, "siteSettingsView"]);
     
