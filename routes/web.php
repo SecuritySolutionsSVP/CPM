@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CredentialController;
 use App\Http\Controllers\UserGroupController;
-use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\LogController;
@@ -30,8 +30,8 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/usergroups/{id}/passwords', [UserGroupController::class, 'groupPasswordsView']);
     Route::get('/user/{id}/passwords', [UserGroupController::class, 'myPasswordsView']);
     
-    Route::get('/', [PasswordController::class, 'notificationPasswordsView']);
-    Route::get('/password', [PasswordController::class, 'allPasswordsView']);
+    Route::get('/', [CredentialController::class, "notificationPasswordsView"]);
+    Route::get('/password', [CredentialController::class, "allPasswordsView"]);
     
     Route::get('/users', [UserController::class, 'userView']);
     Route::get('/user/{id}', [UserController::class, 'profileView']);
