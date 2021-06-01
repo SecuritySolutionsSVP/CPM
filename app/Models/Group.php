@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class Group extends Model
 {
-    use HasFactory;
+    use HasFactory, Searchable;
 
     // creates prop "$groupCredentialPrivileges" that accesses list of credentials via group_credential_privileges table
     public function credentialPrivileges() {
