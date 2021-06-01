@@ -30,6 +30,9 @@ Route::get('/login', [AuthController::class, "loginView"])->name("login");
     
     Route::get('/', [PasswordController::class, "notificationPasswordsView"]);
     Route::get('/password', [PasswordController::class, "allPasswordsView"]);
+    Route::post('/password', [PasswordController::class, "create"]);
+    Route::put('/password', [PasswordController::class, "update"]);
+    Route::delete('/password',[PasswordController::class, "delete"]);
     
     Route::get('/users', [UserController::class, "userView"]);
     Route::get('/user/{id}', [UserController::class, "profileView"]);
