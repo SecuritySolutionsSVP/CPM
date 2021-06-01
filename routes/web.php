@@ -31,9 +31,9 @@ Route::get('/login', [AuthController::class, "loginView"])->name("login");
     
     // Group
     Route::get('/groups', [GroupController::class, "groupsView"]);
-    Route::post('/usergroups/create', [GroupController::class, "create"]);
-    Route::put('/usergroups/update', [GroupController::class, "update"]);
-    Route::delete('/usergroups/delete',[GroupController::class, "delete"]);
+    Route::post('/usergroups', [GroupController::class, "create"]);
+    Route::put('/usergroups', [GroupController::class, "update"]);
+    Route::delete('/usergroups',[GroupController::class, "delete"]);
 
     Route::get('/', [PasswordController::class, "notificationPasswordsView"]);
     Route::get('/password', [PasswordController::class, "allPasswordsView"]);
