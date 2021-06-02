@@ -17,4 +17,13 @@ class Group extends Model
     public function users() {
         return $this->belongsToMany(User::class, 'user_group');
     }
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name'
+    ];
 }
