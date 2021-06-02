@@ -5,6 +5,7 @@ use App\Http\Controllers\UserGroupController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\LogController;
 use GuzzleHttp\Middleware;
@@ -40,6 +41,14 @@ Route::get('/login', [AuthController::class, "loginView"])->name("login");
     
     //User
     Route::get('/users', [UserController::class, "userView"]);
+    Route::get('/user/{id}', [UserController::class, "profileView"]);
+
+    // Role
+    Route::get('/roles', [RoleController::class, "rolesView"]);
+    Route::post('/role/create', [RoleController::class, "create"]);
+    Route::put('/role/update', [RoleController::class, "update"]);
+    Route::delete('/role/delete',[RoleController::class, "delete"]);
+
     Route::get('/user/{id}', [UserController::class, "profileView"])->whereNumber('id');
     Route::post('/user', [UserController::class, "create"]);
     Route::put('/user', [UserController::class, "update"]);
