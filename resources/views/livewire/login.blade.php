@@ -8,7 +8,7 @@
     {{ Form::open(['url' => 'login', 'class' => 'login__form']) }}
     <p>
         {{ Form::label('email', trans('Email Address')) }}
-        {{ Form::text('email') }}
+        {{ Form::text('email', App\Models\User::first()->email) }}
     </p>
 
     <p>
