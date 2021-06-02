@@ -17,7 +17,12 @@
             <a href="/"><img class="logo" src="/images/logo-25.svg"></a>
             <div class="header__navigation">
                 <div class="header__navigation__item"><a href="/">{{ trans('Dashboard') }}</a></div>
+                
+                @if(Auth::check())
+                <div class="header__navigation__item"><a href="/logout">{{ trans('Logout') }}</a></div>
+                @else
                 <div class="header__navigation__item"><a href="/login">{{ trans('Login') }}</a></div>
+                @endif
             </div>
         </div>
     </div>
