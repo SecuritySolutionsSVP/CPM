@@ -3,6 +3,8 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CredentialController;
 use App\Http\Controllers\UserGroupController;
+use App\Http\Controllers\GroupController;
+use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\LogController;
@@ -35,6 +37,28 @@ Route::middleware(['auth'])->group(function() {
     
     Route::get('/users', [UserController::class, 'userView']);
     Route::get('/user/{id}', [UserController::class, 'profileView']);
+
+    Route::get('/usergroups', [UserGroupController::class, "allUsergroupsView"]);
+    Route::get('/usergroups/{id}/passwords', [UserGroupController::class, "groupPasswordsView"])->whereNumber('id');
+    Route::get('/user/{id}/passwords', [UserGroupController::class, "myPasswordsView"])->whereNumber('id');
+    
+    // Group
+    Route::get('/groups', [GroupController::class, "groupsView"]);
+    Route::post('/usergroups', [GroupController::class, "create"]);
+    Route::put('/usergroups', [GroupController::class, "update"]);
+    Route::delete('/usergroups',[GroupController::class, "delete"]);
+
+    Route::get('/', [PasswordController::class, "notificationPasswordsView"]);
+    Route::get('/password', [PasswordController::class, "allPasswordsView"]);
+    
+    //User
+    Route::get('/users', [UserController::class, "userView"]);
+    Route::get('/user/{id}', [UserController::class, "profileView"])->whereNumber('id');
+    Route::post('/user', [UserController::class, "create"]);
+    Route::put('/user', [UserController::class, "update"]);
+    Route::put('/user/password', [UserController::class, "updatePassword"]);
+    Route::delete('/user',[UserController::class, "delete"]);
+    Route::delete('/user/force',[UserController::class, "forceDelete"]);
     
     Route::get('/site-settings', [SiteController::class, 'siteSettingsView']);
     
