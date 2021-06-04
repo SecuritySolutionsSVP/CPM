@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="UTF-8">
@@ -10,9 +10,9 @@
         integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="/css/app.css" rel="stylesheet">
-    <title>CPM - @yield('title')</title>
     <livewire:styles/>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <title>{{ env('APP_NAME', 'CPM') }} - @yield('title')</title>
 </head>
 
 <body>
@@ -20,9 +20,12 @@
         <div class="md:container md:mx-auto">
             <a href="/"><img class="logo" src="/images/logo-25.svg"></a>
             <div class="header__navigation">
-
-                <div class="header__navigation__item"><a href="/">Dashboard</a></div>
-                <div class="header__navigation__item"><a href="/login">Login</a></div>
+                <div class="header__navigation__item"><a href="/">{{ trans('Dashboard') }}</a></div>
+                @if(Auth::check())
+                <div class="header__navigation__item"><a href="/logout">{{ trans('Logout') }}</a></div>
+                @else
+                <div class="header__navigation__item"><a href="/login">{{ trans('Login') }}</a></div>
+                @endif
             </div>
             <div class="inline-block md:hidden">
                 <i class="fas fa-bars fa-2x hidden"></i>
