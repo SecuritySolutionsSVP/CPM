@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\TwoFactorUserToken;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class TwoFactorUserTokenFactory extends Factory
@@ -22,7 +23,8 @@ class TwoFactorUserTokenFactory extends Factory
     public function definition()
     {
         return [
-            'token' => $this->model->generateCode(6),
+            'token' => $this->model::generateCode(6),
+            'expiration' => Carbon::now()->addMinutes(5),
         ];
     }
 }

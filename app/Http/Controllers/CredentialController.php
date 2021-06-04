@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Credential;
 use Illuminate\Support\Facades\Validator;
 
-class PasswordController extends Controller
+class CredentialController extends Controller
 {
     function notificationPasswordsView() {
         return view('dashboard');
