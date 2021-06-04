@@ -8,7 +8,6 @@ use App\Models\Credential;
 use App\Models\Group;
 use App\Models\User;
 
-
 class CredentialController extends Controller
 {
     function notificationPasswordsView() {
@@ -131,7 +130,7 @@ class CredentialController extends Controller
      * Add User to Credential
      * 
      * @return \Illuminate\Http\Response 
-     */
+     */ 
     public function addUserToCredential(Request $request) {
         $validator = Validator::make($request->all(), 
         [ 
