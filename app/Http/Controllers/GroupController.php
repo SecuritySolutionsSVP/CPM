@@ -13,6 +13,11 @@ class GroupController extends Controller
         return view('group-overview');
     }
 
+    /** 
+     * Get User Groups
+     * 
+     * @return Group 
+     */
     public function getUserGroups(Request $request) {
         $validator = Validator::make($request->all(), 
         [ 
@@ -30,6 +35,11 @@ class GroupController extends Controller
         return $groups;
     }
 
+    /** 
+     * Get Group Users
+     * 
+     * @return User 
+     */ 
     public function getGruopUsers(Request $request) {
         $validator = Validator::make($request->all(), 
         [ 
@@ -47,6 +57,11 @@ class GroupController extends Controller
         return $users;
     }
 
+    /** 
+     * Add User to Group 
+     * 
+     * @return \Illuminate\Http\Response 
+     */ 
     public function addUserToGroup(Request $request) {
         $validator = Validator::make($request->all(), 
         [ 
@@ -62,6 +77,11 @@ class GroupController extends Controller
         $user->groups()->attach($group);
     }
 
+    /** 
+     * Remove User from Group 
+     * 
+     * @return \Illuminate\Http\Response 
+     */ 
     public function removeUserFromGroup(Request $request) {
         $validator = Validator::make($request->all(), 
         [ 
