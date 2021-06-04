@@ -12,11 +12,8 @@ use Illuminate\Support\Facades\Auth;
 class CredentialController extends Controller
 {
     function notificationCredentialsView() {
-        $user = Auth::user();
-        $credentials = $user->getAllCredentialPrivileges();
-        // ddd($credentials);
         return view('dashboard', [
-            'credentials' => $credentials,
+            'credentials' => Auth::user()->getAllCredentialPrivileges(),
         ]);
     }
 

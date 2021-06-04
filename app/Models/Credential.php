@@ -26,6 +26,15 @@ class Credential extends Model
         return $this->hasMany(UserCredentialAccessLog::class);
     }
 
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password',
+    ];
     /**
      * The attributes that are mass assignable.
      *
