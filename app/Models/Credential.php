@@ -24,4 +24,16 @@ class Credential extends Model
     public function credentialAccessLogs() {
         return $this->hasMany(UserCredentialAccessLog::class, 'user_credential_access_log');
     }
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'username',
+        'password',
+        'credential_group_id',
+        'is_sensitive',
+    ];
 }
