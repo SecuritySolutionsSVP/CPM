@@ -40,7 +40,7 @@ class GroupController extends Controller
      * 
      * @return User 
      */ 
-    public function getGruopUsers(Request $request) {
+    public function getGroupUsers(Request $request) {
         $validator = Validator::make($request->all(), 
         [ 
             'group_id' => 'required',
