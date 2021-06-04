@@ -18,7 +18,7 @@ class CredentialController extends Controller
         return view('passwords-view');
     }
 
-    /**
+    /** 
      * Get User Credentials
      * 
      * @return Credential 
@@ -186,7 +186,8 @@ class CredentialController extends Controller
         $user->personalCredentialPrivileges()->detach($credential);
     }
 
-     /* Create Credential 
+    /**
+     * Create Credential 
      * 
      * @return \Illuminate\Http\Response 
      */ 
