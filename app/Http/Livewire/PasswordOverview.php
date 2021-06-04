@@ -6,7 +6,7 @@ use Livewire\Component;
 
 class PasswordOverview extends Component
 {
-
+    public $credentials = [];
     public $showModal = false;
 
 

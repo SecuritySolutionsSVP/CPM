@@ -3,7 +3,8 @@
         Passwords
     @stop
 
-    <x-password-list :credentials="$credentials">
+    <livewire:password-overview :credentials="$credentials"/>
+    {{-- <x-password-overview :credentials="$credentials">
         
-    </x-password-list>
+    </x-password-list> --}}
 </x-layout>
