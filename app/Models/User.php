@@ -25,12 +25,8 @@ class User extends Authenticatable
 
     // creates prop "$credentialAccessLog" that accesses list of credentials via user_credential_access_log table
     public function credentialAccessLogs() {
-        return $this->hasMany(UserCredentialAccessLog::class, 'user_credential_access_log');
+        return $this->hasMany(UserCredentialAccessLog::class);
     }
-
-    // public function credentialsAccessed() {
-    //     return $this->belongsToMany(Credential::class, "user_credential_access_log");
-    // }
 
     // creates prop "$personalCredentialPrivileges" that accesses list of credentials via user_credential_privileges table
     public function personalCredentialPrivileges() {

@@ -23,7 +23,7 @@ class Credential extends Model
     }
 
     public function credentialAccessLogs() {
-        return $this->hasMany(UserCredentialAccessLog::class, 'user_credential_access_log');
+        return $this->hasMany(UserCredentialAccessLog::class);
     }
 
     /**
