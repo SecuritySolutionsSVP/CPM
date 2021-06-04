@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTwoFactorTokensTable extends Migration
+class CreateTwoFactorCredentialTokensTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateTwoFactorTokensTable extends Migration
      */
     public function up()
     {
-        Schema::create('two_factor_tokens', function (Blueprint $table) {
+        Schema::create('two_factor_credential_tokens', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('credential_id')->constrained('credentials');
             $table->string('token');
             $table->timestampTz('expiration');
             $table->timestampsTz();
@@ -29,6 +29,6 @@ class CreateTwoFactorTokensTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('two_factor_tokens');
+        Schema::dropIfExists('two_factor_credential_tokens');
     }
 }
