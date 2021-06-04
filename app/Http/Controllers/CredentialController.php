@@ -3,25 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-<<<<<<< HEAD
-=======
 use Illuminate\Support\Facades\Validator;
 use App\Models\Credential;
 use App\Models\User;
->>>>>>> user_credential_privileges Add, Read and Delete
+
 
 class CredentialController extends Controller
 {
     function notificationPasswordsView() {
         return view('dashboard');
     }
-<<<<<<< HEAD
 
-    function allPasswordsView() {
-        return view('passwords-view');
-    }
-=======
-    
     function allPasswordsView() {
         return view('passwords-view');
     }
@@ -89,5 +81,4 @@ class CredentialController extends Controller
         
         $user->personalCredentialPrivileges()->detach($credential);
     }
->>>>>>> user_credential_privileges Add, Read and Delete
 }
