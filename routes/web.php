@@ -29,15 +29,15 @@ Route::get('/logout', [AuthController::class, 'logout']);
 
 Route::middleware(['auth'])->group(function() {
     Route::get('/usergroups', [UserGroupController::class, "allUsergroupsView"]);
-    Route::get('/usergroups/{id}/passwords', [UserGroupController::class, "groupPasswordsView"])->whereNumber('id');
-    Route::get('/user/{id}/passwords', [UserGroupController::class, "myPasswordsView"])->whereNumber('id');
+    Route::get('/usergroups/{id}/credentials', [UserGroupController::class, "groupCredentialsView"])->whereNumber('id');
+    Route::get('/user/{id}/credentials', [UserGroupController::class, "myCredentialsView"])->whereNumber('id');
     
     //Password
-    Route::get('/', [CredentialController::class, "notificationPasswordsView"]);
-    Route::get('/password', [CredentialController::class, "allPasswordsView"]);
-    Route::post('/password', [CredentialController::class, "create"]);
-    Route::put('/password', [CredentialController::class, "update"]);
-    Route::delete('/password',[CredentialController::class, "delete"]);
+    Route::get('/', [CredentialController::class, "notificationCredentialsView"]);
+    Route::get('/credentials', [CredentialController::class, "allCredentialsView"]);
+    Route::post('/credential', [CredentialController::class, "create"]);
+    Route::put('/credential', [CredentialController::class, "update"]);
+    Route::delete('/credential',[CredentialController::class, "delete"]);
 
     // Group
     Route::get('/groups', [GroupController::class, "groupsView"]);
@@ -50,7 +50,7 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/user/{id}', [UserController::class, "profileView"])->whereNumber('id');
     Route::post('/user', [UserController::class, "create"]);
     Route::put('/user', [UserController::class, "update"]);
-    Route::put('/user/password', [UserController::class, "updatePassword"]);
+    Route::put('/user/credential', [UserController::class, "updateCredential"]);
     Route::delete('/user',[UserController::class, "delete"]);
     Route::delete('/user/force',[UserController::class, "forceDelete"]);
 

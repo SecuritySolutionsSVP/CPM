@@ -10,11 +10,11 @@ use App\Models\User;
 
 class CredentialController extends Controller
 {
-    function notificationPasswordsView() {
+    function notificationCredentialsView() {
         return view('dashboard');
     }
 
-    function allPasswordsView() {
+    function allCredentialsView() {
         return view('passwords-view');
     }
 
