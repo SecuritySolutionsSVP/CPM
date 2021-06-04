@@ -62,7 +62,7 @@ class CredentialController extends Controller
 
         $credential = Credential::find($input['id']);
         $credential->username = $input['username'];
-        $credential->password = $input['password'];
+        $credential->password = bcrypt($input['password']);
         $credential->credential_group_id = $input['credential_group_id'];
         $credential->is_sensitive = $input['is_sensitive'];
         $credential->save();
