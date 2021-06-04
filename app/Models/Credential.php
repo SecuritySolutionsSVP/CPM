@@ -18,7 +18,7 @@ class Credential extends Model
     }
 
     public function privilegedUsers() {
-        return $this->belongsToMany(User::class, 'user_Credential_privileges');
+        return $this->belongsToMany(User::class, 'user_credential_privileges');
     }
 
     public function credentialAccessLogs() {
