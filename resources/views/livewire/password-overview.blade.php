@@ -10,7 +10,7 @@
                         <a href="#">{{ $credential->created_at->diffForHumans() }}</a>
                     </div>
                     <div class="password-list__list__item__icons">
-                        <i class="fas fa-user password-list__list__item__icons__get-username"  wire:click="displayCredentialModal({{$credential->id}})"></i>
+                        <i class="fas fa-user password-list__list__item__icons__get-username"  wire:click="displayCredentialAccessModal({{$credential->id}})"></i>
                         <i class="fas fa-key password-list__list__item__icons__get-password"></i>
                         <i class="fas fa-cogs password-list__list__item__icons__open-settings"></i>
                     </div>
