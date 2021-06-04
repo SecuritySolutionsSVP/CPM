@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Credential;
+use App\Models\Group;
 use App\Models\User;
 
 class CredentialController extends Controller
@@ -12,7 +13,7 @@ class CredentialController extends Controller
     function notificationPasswordsView() {
         return view('dashboard');
     }
-    
+
     function allPasswordsView() {
         return view('passwords-view');
     }
@@ -51,6 +52,55 @@ class CredentialController extends Controller
         return $users;
     }
 
+    public function getGroupCredentials(Request $request) {
+        $validator = Validator::make($request->all(), 
+        [ 
+            'group_id' => 'required',
+        ]);
+
+        $input = $request->only('group_id');
+        $group = Group::find($input['group_id']);
+        
+        $credentials = [];
+        foreach ($group->credentialPrivileges as $credential) {
+            $credentials[] = $credential->pivot->credential_id;
+        }
+
+        return $credentials;
+    }
+
+    public function getCredentialGroups(Request $request) {
+        $validator = Validator::make($request->all(), 
+        [ 
+            'credential_id' => 'required',
+        ]);
+
+        $input = $request->only('credential_id');
+        $credential = Credential::find($input['credential_id']);
+
+        $groups = [];
+        foreach ($credential->privilegedGroups as $group) {
+            $groups[] = $group->pivot->group_id;
+        }
+
+        return $groups;
+    }
+
+    public function addGroupToCredential(Request $request) {
+        $validator = Validator::make($request->all(), 
+        [ 
+            'group_id' => 'required',
+            'credential_id' => 'required',
+        ]);
+
+        $input = $request->only('group_id', 'credential_id');
+
+        $group = Group::find($input['group_id']);
+        $credential = Credential::find($input['credential_id']);
+        
+        $group->credentialPrivileges()->attach($credential);
+    }
+
     public function addUserToCredential(Request $request) {
         $validator = Validator::make($request->all(), 
         [ 
@@ -64,6 +114,21 @@ class CredentialController extends Controller
         $credential = Credential::find($input['credential_id']);
         
         $user->personalCredentialPrivileges()->attach($credential);
+    }
+
+    public function removeGroupFromCredential(Request $request) {
+        $validator = Validator::make($request->all(), 
+        [ 
+            'group_id' => 'required',
+            'credential_id' => 'required',
+        ]);
+
+        $input = $request->only('group_id', 'credential_id');
+
+        $group = Group::find($input['group_id']);
+        $credential = Credential::find($input['credential_id']);
+        
+        $group->credentialPrivileges()->detach($credential);
     }
 
     public function removeUserFromCredential(Request $request) {
