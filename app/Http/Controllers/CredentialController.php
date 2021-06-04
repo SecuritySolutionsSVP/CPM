@@ -18,6 +18,11 @@ class CredentialController extends Controller
         return view('passwords-view');
     }
 
+    /** 
+     * Get User Credentials
+     * 
+     * @return Credential 
+     */
     public function getUserCredentials(Request $request) {
         $validator = Validator::make($request->all(), 
         [ 
@@ -35,6 +40,11 @@ class CredentialController extends Controller
         return $credentials;
     }
 
+    /** 
+     * Get Credential Users
+     * 
+     * @return User 
+     */
     public function getCredentialUsers(Request $request) {
         $validator = Validator::make($request->all(), 
         [ 
@@ -52,6 +62,11 @@ class CredentialController extends Controller
         return $users;
     }
 
+    /** 
+     * Get Group Credentials
+     * 
+     * @return Credential 
+     */
     public function getGroupCredentials(Request $request) {
         $validator = Validator::make($request->all(), 
         [ 
@@ -69,6 +84,11 @@ class CredentialController extends Controller
         return $credentials;
     }
 
+    /** 
+     * Get Credential Groups
+     * 
+     * @return Group 
+     */
     public function getCredentialGroups(Request $request) {
         $validator = Validator::make($request->all(), 
         [ 
@@ -86,6 +106,11 @@ class CredentialController extends Controller
         return $groups;
     }
 
+    /** 
+     * Add Group to Credential
+     * 
+     * @return \Illuminate\Http\Response 
+     */ 
     public function addGroupToCredential(Request $request) {
         $validator = Validator::make($request->all(), 
         [ 
@@ -101,6 +126,11 @@ class CredentialController extends Controller
         $group->credentialPrivileges()->attach($credential);
     }
 
+    /** 
+     * Add User to Credential
+     * 
+     * @return \Illuminate\Http\Response 
+     */ 
     public function addUserToCredential(Request $request) {
         $validator = Validator::make($request->all(), 
         [ 
@@ -116,6 +146,11 @@ class CredentialController extends Controller
         $user->personalCredentialPrivileges()->attach($credential);
     }
 
+    /** 
+     * Remove Group from Credential
+     * 
+     * @return \Illuminate\Http\Response 
+     */ 
     public function removeGroupFromCredential(Request $request) {
         $validator = Validator::make($request->all(), 
         [ 
@@ -131,6 +166,11 @@ class CredentialController extends Controller
         $group->credentialPrivileges()->detach($credential);
     }
 
+    /** 
+     * Remove User from Credential
+     * 
+     * @return \Illuminate\Http\Response 
+     */ 
     public function removeUserFromCredential(Request $request) {
         $validator = Validator::make($request->all(), 
         [ 
