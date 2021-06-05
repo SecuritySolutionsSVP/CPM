@@ -48,8 +48,8 @@ class User extends Authenticatable
     }
 
     public function getAllCredentialPrivileges() {
-        return $this->getGroupCredentialPrivileges()
-            ->merge($this->personalCredentialPrivileges)
+        return $this->personalCredentialPrivileges
+            ->merge($this->getGroupCredentialPrivileges())
             ->unique('id');
     }
 
