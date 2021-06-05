@@ -4,7 +4,7 @@
             @foreach ($credentials as $credential)
                 <div class="password-list__list__item clearfix">
                     <div class="password-list__list__item__name">
-                        {{ trans('Passwords for') }} {{ $credential->credentialGroup->name }}
+                        {{ $credential->username }} {{ trans('Passwords for') }} {{ $credential->credentialGroup->name }}
                     </div>
                     <div class="password-list__list__item__created">
                         <a href="#">{{ $credential->created_at->diffForHumans() }}</a>
@@ -24,7 +24,7 @@
                 <i class="fas fa-times fa-2x cursor-pointer" wire:click="$set('showModal', false)"></i>
             </div>
             <div>
-                <h2> {{ trans('Passwords for') }} {{ $selectedCredential->name}}</h2>
+                <h2> {{ trans('Passwords for') }} {{ $selectedCredential->username}}</h2>
                 <div class="password-modal__credentials">
                     {{ Form::label('username', 'Username') }}
                     <div>
@@ -41,7 +41,7 @@
                     {{-- {{ dd($selectedCredential)}} --}}
                     @foreach ($selectedCredential->credentialAccessLogs as $credLog)
                         <div>
-                            {{ $credLog->user->fullName }} {{ trans('accessed password at') }} {{ $credLog->created_at }} {{-- 09:35 - 26/05/2021 --}}
+                            {{ trans('password accessed') }} {{ $credLog->created_at }} {{ trans('by') }} {{ $credLog->user->fullName() }} {{-- 09:35 - 26/05/2021 --}}
                         </div>
                     @endforeach
                     {{-- @for ($i = 0; $i < 5; $i++)
