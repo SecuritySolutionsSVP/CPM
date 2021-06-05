@@ -53,6 +53,10 @@ class User extends Authenticatable
             ->unique('id');
     }
 
+    public function fullName() {
+        return "$this->first_name $this->last_name";
+    }
+
     /**
      * The attributes that are mass assignable.
      *
