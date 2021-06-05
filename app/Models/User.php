@@ -28,22 +28,17 @@ class User extends Authenticatable
         return $this->hasMany(UserCredentialAccessLog::class);
     }
 
-    // creates prop "$personalCredentialPrivileges" that accesses list of credentials via user_credential_privileges table
-    public function personalCredentialPrivileges() {
-        return $this->belongsToMany(Credential::class, 'user_credential_privileges');
-    }
     // creates prop "$groups" that accesses list of groups via user_group table
     public function groups() {
         return $this->belongsToMany(Group::class, 'user_group');
     }
 
-    public function getGroupCredentialPrivileges() {
-        // $credentials = new Collection();
-        // $this->groups->each(function ($group, $key) use ($credentials) {
-        //     $credentials->merge($group->credentialPrivileges);
-        // });
-        // return $credentials;
+    // creates prop "$personalCredentialPrivileges" that accesses list of credentials via user_credential_privileges table
+    public function personalCredentialPrivileges() {
+        return $this->belongsToMany(Credential::class, 'user_credential_privileges');
+    }
 
+    public function getGroupCredentialPrivileges() {
         return $this->groups
             ->map(function ($group) {
                 return $group->credentialPrivileges;
