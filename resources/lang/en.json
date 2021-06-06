@@ -5,5 +5,7 @@
     "Login": "Login",
     "Dashboard": "Dashboard",
     "Logout": "Logout",
-    "Passwords for": "Passwords for"
+    "Passwords for": "Passwords for",
+    "password seen": "password accessed",
+    "by": "by"
 }

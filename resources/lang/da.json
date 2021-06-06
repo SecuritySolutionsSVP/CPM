@@ -5,5 +5,7 @@
     "Login": "Log ind",
     "Dashboard": "Forside",
     "Logout": "Log ud",
-    "Passwords for": "Adgangskoder til"
+    "Passwords for": "Adgangskoder til",
+    "password seen": "adgangskode set",
+    "by": "af"
 }

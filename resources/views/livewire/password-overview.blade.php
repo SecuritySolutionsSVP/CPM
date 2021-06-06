@@ -37,18 +37,11 @@
                     </div>
                 </div>
                 <div class="password-modal__accesslog">
-                    {{-- Could also be used as a access / changelog if you had the right credentials to see changes --}}
-                    {{-- {{ dd($selectedCredential)}} --}}
-                    @foreach ($selectedCredential->credentialAccessLogs as $credLog)
+                    @foreach ($selectedCredential->credentialAccessLogs->sortBy('created_at')->reverse() as $credLog)
                         <div>
-                            {{ trans('password accessed') }} {{ $credLog->created_at }} {{ trans('by') }} {{ $credLog->user->fullName() }} {{-- 09:35 - 26/05/2021 --}}
+                            {{ trans('password seen') }} {{ Timezone::convertToLocal($credLog->created_at) }} {{ trans('by') }} {{ $credLog->user->fullName() }} {{-- 09:35 - 26/05/2021 --}}
                         </div>
                     @endforeach
-                    {{-- @for ($i = 0; $i < 5; $i++)
-                        <div>
-                            Test-user accessed password at 09:35 - 26/05/2021
-                        </div>
-                    @endfor --}}
                 </div>
                 <div class="mb-12">
                     <a class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
