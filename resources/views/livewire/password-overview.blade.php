@@ -26,13 +26,13 @@
             <div>
                 <h2> {{ trans('Passwords for') }} {{ $selectedCredential->username}}</h2>
                 <div class="password-modal__credentials">
-                    {{ Form::label('username', 'Username') }}
+                    {{ Form::label('username', trans('Username')) }}
                     <div>
                         {{ Form::text('username') }} <i class="fas fa-copy"></i>
                     </div>
-                    {{ Form::label('password', 'Password') }}
+                    {{ Form::label('password', trans('Password')) }}
                     <div>
-                        {{ Form::password('password') }} <i class="fas fa-copy"></i> <i class="fas fa-eye"></i> <i
+                        {{ Form::password('password') }} <i class="fas fa-copy" title="{{ trans('Copy') }}"></i> <i class="fas fa-eye"></i> <i
                             class="fas fa-eye-slash"></i>
                     </div>
                 </div>
@@ -45,13 +45,13 @@
                 </div>
                 <div class="mb-12">
                     <a class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
-                        href="#">See more...</a>
+                        href="#">{{ trans('See more...') }}</a>
                 </div>
                 <div>
                     <button
-                        class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">Cancel</button>
+                        class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">{{ trans('Cancel') }}</button>
                     <button
-                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">Save</button>
+                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">{{ trans('Save') }}</button>
                 </div>
             </div>
         </div>
