@@ -1,8 +1,17 @@
 {
     "Email Address": "Email Address",
+    "Username": "Username",
     "Password": "Password",
     "Remember me": "Remember me",
     "Login": "Login",
     "Dashboard": "Dashboard",
-    "Logout": "Logout"
+    "Logout": "Logout",
+    "Passwords for": "Passwords for",
+    "password seen": "password accessed",
+    "by": "by",
+    "See more...": "See more...",
+    "Save": "Save",
+    "Cancel": "Cancel",
+    "Copy": "Copy",
+    "Show password": "Show password"
 }

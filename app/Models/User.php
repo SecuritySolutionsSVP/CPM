@@ -25,41 +25,36 @@ class User extends Authenticatable
 
     // creates prop "$credentialAccessLog" that accesses list of credentials via user_credential_access_log table
     public function credentialAccessLogs() {
-        return $this->hasMany(UserCredentialAccessLog::class, 'user_credential_access_log');
+        return $this->hasMany(UserCredentialAccessLog::class);
     }
 
-    // public function credentialsAccessed() {
-    //     return $this->belongsToMany(Credential::class, "user_credential_access_log");
-    // }
-
-    // creates prop "$personalCredentialPrivileges" that accesses list of credentials via user_credential_privileges table
-    public function personalCredentialPrivileges() {
-        return $this->belongsToMany(Credential::class, 'user_credential_privileges');
-    }
     // creates prop "$groups" that accesses list of groups via user_group table
     public function groups() {
         return $this->belongsToMany(Group::class, 'user_group');
     }
 
-    public function getGroupCredentialPrivileges() {
-        // $credentials = new Collection();
-        // $this->groups->each(function ($group, $key) use ($credentials) {
-        //     $credentials->merge($group->credentialPrivileges);
-        // });
-        // return $credentials;
+    // creates prop "$personalCredentialPrivileges" that accesses list of credentials via user_credential_privileges table
+    public function personalCredentialPrivileges() {
+        return $this->belongsToMany(Credential::class, 'user_credential_privileges');
+    }
 
-        return $this->groups
+    public function getGroupCredentialPrivileges() {
+        return new Collection($this->groups
             ->map(function ($group) {
                 return $group->credentialPrivileges;
             })
             ->flatten(1)
-            ->unique('id');
+            ->unique('id'));
     }
 
     public function getAllCredentialPrivileges() {
-        return $this->getGroupCredentialPrivileges()
-            ->merge($this->personalCredentialPrivileges)
+        return $this->personalCredentialPrivileges
+            ->merge($this->getGroupCredentialPrivileges())
             ->unique('id');
+    }
+
+    public function fullName() {
+        return "$this->first_name $this->last_name";
     }
 
     /**
