@@ -1,2 +1,2 @@
 Hello <strong>{{ $name }}</strong>,
-<p>{{$body}}{{$TwoFactorUserToken}}</p>
+<p>{{$body}}{{$TwoFactorToken}}</p>
