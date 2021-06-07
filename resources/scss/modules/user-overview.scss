@@ -1,0 +1,48 @@
+.user-overview {
+    padding-top: 10px;
+    &__list {
+        border-left: solid black 1px;
+        border-right: solid black 1px;
+        border-top: solid black 1px;
+        &__item {
+            padding: 5px;
+            border-bottom: 1px solid black;
+            &__name{
+                width: 60%;
+                display: inline-block;
+                float: left;
+            }
+            &__icons{
+                float: left;
+                width: 20%;
+                display: inline-block;
+                text-align: right;
+
+                &__get-username{
+                    color: green;
+                }
+
+                &__get-password{
+                    color: red;
+                }
+
+                &__open-settings{
+                    color: purple
+                }
+            }
+            &__created{
+                text-align: right;
+                float: left;
+                width: 20%;
+                display: inline-block;
+
+                a{
+                    color: blue;
+                    &:hover{
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+}
