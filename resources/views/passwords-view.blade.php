@@ -3,7 +3,5 @@
         Passwords
     @stop
 
-    <x-password-list>
-        
-    </x-password-list>
+    <livewire:password-overview :credentials="$credentials"/>
 </x-layout>

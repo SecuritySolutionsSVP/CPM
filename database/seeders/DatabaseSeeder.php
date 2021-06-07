@@ -6,6 +6,7 @@ use App\Models\Credential;
 use App\Models\Group;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\UserCredentialAccessLog;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -54,6 +55,9 @@ class DatabaseSeeder extends Seeder
                 $credentials->random(rand(1,3))->pluck('id')->toArray()
             );
         });
-
+        $access_logs = UserCredentialAccessLog::factory(10)->create([
+            'user_id' => $users->random()->id,
+            'credential_id' => $credentials->random()->id
+        ]);
     }
 }

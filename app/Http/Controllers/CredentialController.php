@@ -7,15 +7,20 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Credential;
 use App\Models\Group;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class CredentialController extends Controller
 {
     function notificationCredentialsView() {
-        return view('dashboard');
+        return view('dashboard', [
+            'credentials' => Auth::user()->getAllCredentialPrivileges(),
+        ]);
     }
 
     function allCredentialsView() {
-        return view('passwords-view');
+        return view('passwords-view', [
+            'credentials' => Credential::all(),
+        ]);
     }
 
     /** 

@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class Credential extends Model
 {
-    use HasFactory;
+    use HasFactory, Searchable;
 
     public function credentialGroup() {
         return $this->belongsTo(CredentialGroup::class);
@@ -22,9 +23,18 @@ class Credential extends Model
     }
 
     public function credentialAccessLogs() {
-        return $this->hasMany(UserCredentialAccessLog::class, 'user_credential_access_log');
+        return $this->hasMany(UserCredentialAccessLog::class);
     }
 
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password',
+    ];
     /**
      * The attributes that are mass assignable.
      *

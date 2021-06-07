@@ -11,6 +11,7 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "http-interop/http-factory-guzzle": "^1.0",
         "itsgoingd/clockwork": "^5.0",
+        "jamesmills/laravel-timezone": "^1.9",
         "laravel/framework": "^8.40",
         "laravel/scout": "^9.1",
         "laravel/tinker": "^2.5",

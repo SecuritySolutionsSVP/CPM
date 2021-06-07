@@ -1,8 +1,17 @@
 {
     "Email Address": "Email Adresse",
+    "Username": "Brugernavn",
     "Password": "Adgangskode",
     "Remember me": "Husk mig",
     "Login": "Log ind",
     "Dashboard": "Forside",
-    "Logout": "Log ud"
+    "Logout": "Log ud",
+    "Passwords for": "Adgangskoder til",
+    "password seen": "adgangskode set",
+    "by": "af",
+    "See more...": "Se mere...",
+    "Save": "Gem",
+    "Cancel": "Afbryd",
+    "Copy": "Kopier",
+    "Show password": "Vis adgangskode"
 }
