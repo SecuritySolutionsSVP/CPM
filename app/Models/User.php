@@ -39,12 +39,12 @@ class User extends Authenticatable
     }
 
     public function getGroupCredentialPrivileges() {
-        return $this->groups
+        return new Collection($this->groups
             ->map(function ($group) {
                 return $group->credentialPrivileges;
             })
             ->flatten(1)
-            ->unique('id');
+            ->unique('id'));
     }
 
     public function getAllCredentialPrivileges() {
