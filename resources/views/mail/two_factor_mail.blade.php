@@ -1,1 +1,2 @@
-Test email template
+Hello <strong>{{ $name }}</strong>,
+<p>{{$body}}{{$TwoFactorUserToken}}</p>
