@@ -10,7 +10,9 @@ use App\Models\Group;
 class GroupController extends Controller
 {
     function groupsView() {
-        return view('group-overview');
+        return view('group-overview', [
+            "groups" => Group::all(),
+        ]);
     }
 
     /** 

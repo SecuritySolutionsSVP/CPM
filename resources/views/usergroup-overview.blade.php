@@ -3,5 +3,5 @@
         Groups
     @stop
 
-    <livewire:group-overview/>
+    <livewire:group-overview :groups="$groups" />
 </x-layout>

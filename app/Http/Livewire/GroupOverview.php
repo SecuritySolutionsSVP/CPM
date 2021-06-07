@@ -6,6 +6,7 @@ use Livewire\Component;
 
 class GroupOverview extends Component
 {
+    public $groups;
     public $showModal = false;
     
     public function render()
