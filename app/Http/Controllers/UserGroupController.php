@@ -19,6 +19,8 @@ class UserGroupController extends Controller
     }
 
     function myPasswordsView () {
-        return view('user-password-view');
+        return view('user-password-view',[
+            "credentials" => Auth::user()->getAllUserCredentials(),
+        ]);
     }
 }
