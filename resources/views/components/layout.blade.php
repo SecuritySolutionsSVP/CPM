@@ -21,6 +21,8 @@
             <a href="/"><img class="logo" src="/images/logo-25.svg"></a>
             <div class="header__navigation">
                 <div class="header__navigation__item"><a href="/">{{ trans('Dashboard') }}</a></div>
+                <div class="header__navigation__item"><a href="/users">{{ trans('Users') }}</a></div>
+                <div class="header__navigation__item"><a href="/groups">{{ trans('Groups') }}</a></div>
                 @if(Auth::check())
                 <div class="header__navigation__item"><a href="/logout">{{ trans('Logout') }}</a></div>
                 @else
