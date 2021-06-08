@@ -8,6 +8,9 @@ use App\Models\Credential;
 use App\Models\Group;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Models\TwoFactorCredentialToken;
+use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon;
 
 class CredentialController extends Controller
 {
@@ -21,6 +24,27 @@ class CredentialController extends Controller
         return view('passwords-view', [
             'credentials' => Credential::all(),
         ]);
+    }
+
+    public function twoFactor(Request $request) {
+        $validator = Validator::make($request->all(), 
+        [
+            'credential_id' => 'required',
+            'twoFactorCode' => 'required', 
+        ]);
+
+        $input = $request->only('credential_id','twoFactorCode');
+        $credential = Credential::find($input['credential_id']);
+
+        $tokens = TwoFactorCredentialToken::where([['credential_id', '=', $credential['id']], ['expiration', '>=', Carbon::now()]])->get();
+
+        foreach ($tokens as $key => $value) {
+            if (Hash::check($input['twoFactorCode'], $value['token'])) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /** 
