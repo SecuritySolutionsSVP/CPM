@@ -10,7 +10,9 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
     function userView() {
-        return view('user-view');
+        return view('user-view', [
+            "users" => User::all(),
+        ]);
     }
 
     function profileView() {

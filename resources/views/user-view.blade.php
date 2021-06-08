@@ -3,5 +3,5 @@
         Users
     @stop
 
-    <livewire:user-overview/>
+    <livewire:user-overview :users="$users"/>
 </x-layout>
