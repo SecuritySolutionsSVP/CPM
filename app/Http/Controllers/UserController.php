@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use App\Models\TwoFactorUserToken;
+use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon;
 
 class UserController extends Controller
 {
@@ -15,6 +18,27 @@ class UserController extends Controller
 
     function profileView() {
         return view('profile-settings');
+    }
+
+    public function twoFactor(Request $request) {
+        $validator = Validator::make($request->all(), 
+        [
+            'user_id' => 'required',
+            'twoFactorCode' => 'required', 
+        ]);
+
+        $input = $request->only('user_id','twoFactorCode');
+        $user = User::find($input['user_id']);
+
+        $tokens = TwoFactorUserToken::where([['user_id', '=', $user['id']], ['expiration', '>=', Carbon::now()]])->get();
+
+        foreach ($tokens as $key => $value) {
+            if (Hash::check($input['twoFactorCode'], $value['token'])) {
+                return true;
+            }
+        }
+
+        return false
     }
 
     /** 
