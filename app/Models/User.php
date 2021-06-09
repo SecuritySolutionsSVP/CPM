@@ -91,5 +91,5 @@ class User extends Authenticatable
         'updated_at' => 'datetime',
         'deleted_at' => 'datetime'
     ];
-    protected $dates = ['created_at', 'updated_at', 'deleted_at']
+    protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 }
