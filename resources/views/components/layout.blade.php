@@ -22,8 +22,10 @@
             <a href="/"><img class="logo" src="/images/logo-25.svg"></a>
             <div class="header__navigation hidden md:inline-block">
                 <div class="header__navigation__item"><a href="/">{{ trans('Dashboard') }}</a></div>
-                @if (Auth::check())
-                    <div class="header__navigation__item"><a href="/logout">{{ trans('Logout') }}</a></div>
+                <div class="header__navigation__item"><a href="/users">{{ trans('Users') }}</a></div>
+                <div class="header__navigation__item"><a href="/groups">{{ trans('Groups') }}</a></div>
+                @if(Auth::check())
+                <div class="header__navigation__item"><a href="/logout">{{ trans('Logout') }}</a></div>
                 @else
                     <div class="header__navigation__item"><a href="/login">{{ trans('Login') }}</a></div>
                 @endif

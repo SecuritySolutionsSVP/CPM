@@ -1,23 +1,26 @@
 <div>
     <div class="group-overview">
         <div class="group-overview__list">
-            @for ($i = 0; $i < 10; $i++)
-            <div class="group-overview__list__item clearfix" wire:click="$set('showModal', true)">
+            @foreach ($groups as $group)
+            <div class="group-overview__list__item clearfix">
                 <div class="group-overview__list__item__name">
-                    Name of Group {{$i}}
+                    {{ $group->name }}
                 </div>
                 <div class="group-overview__list__item__icons">
-                    <i class="fas fa-cogs group-overview__list__item__icons__open-settings"></i>
+                    <i class="fas fa-cogs group-overview__list__item__icons__open-settings" wire:click="editGroupModal({{$group->id}})"></i>
                 </div>
             </div>
-            @endfor
+            @endforeach
         </div>
     </div>
     @if ($showModal)
         <div class="group-modal">
             <div class="text-right">
                 <i class="fas fa-times fa-2x cursor-pointer" wire:click="$set('showModal', false)"></i>
-            </div>   
+            </div>
+            <div>
+                {{ $selectedGroup->name }}
+            </div>
         </div>
         <div class="group-modal__overlay" wire:click="$set('showModal', false)"> </div>        
     @endif
