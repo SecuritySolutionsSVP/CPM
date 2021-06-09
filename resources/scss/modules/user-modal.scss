@@ -10,8 +10,13 @@
     z-index: 100;
     padding: 50px;
 
+    label{
+        display: block;
+    }
+
     input {
         border: 1px solid black;
+        display: block;
     }
     &__overlay {
         background-color: black;
