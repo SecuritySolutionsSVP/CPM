@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use betterapp\LaravelDbEncrypter\Traits\EncryptableDbAttribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Scout\Searchable;
 
 class Credential extends Model
 {
-    use HasFactory, Searchable;
+    use HasFactory, Searchable, EncryptableDbAttribute;
 
     public function credentialGroup() {
         return $this->belongsTo(CredentialGroup::class);
@@ -26,7 +27,14 @@ class Credential extends Model
         return $this->hasMany(UserCredentialAccessLog::class)->withTimestamps();
     }
 
-
+     /** 
+      * The attributes that should be encrypted/decrypted
+      *
+      * @var array
+      */
+    protected $encryptable = [
+        'password',
+    ];
     /**
      * The attributes that should be hidden for arrays.
      *
