@@ -23,27 +23,30 @@ class PasswordOverview extends Component
 
     public function displayCredentialAccessModal($credId) {
         $this->selectedCredential = $this->findCredentialById($credId);
+        $this->hideAllModals();
         $this->showModal = true;
-        $this->editModal = false;
-        $this->createModal = false;
     }
 
     public function displayCredentialCreateModal() {
-        $this->showModal = false;
-        $this->editModal = false;
+        $this->hideAllModals();
         $this->createModal = true;
     }
 
     public function displayCredentialEditModal($credId) {
         $this->selectedCredential = $this->findCredentialById($credId);
-        $this->showModal = false;
+        $this->hideAllModals();
         $this->editModal = true;
-        $this->createModal = false;
     }
 
     private function findCredentialById($id) {
         return $this->credentials->first(function ($credential) use ($id) {
             return $credential->id == $id;
         });
+    }
+
+    private function hideAllModals() {
+        $this->showModal = false;
+        $this->editModal = false;
+        $this->createModal = false;
     }
 }
