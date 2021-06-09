@@ -104,7 +104,7 @@ class GroupController extends Controller
      * 
      * @return \Illuminate\Http\Response 
      */ 
-    public function create(Request $request) 
+    public static function create(Request $request) 
     { 
         $validator = Validator::make($request->all(), 
         [ 
@@ -126,7 +126,7 @@ class GroupController extends Controller
      * 
      * @return \Illuminate\Http\Response 
      */ 
-    public function update(Request $request) 
+    public static function update(Request $request) 
     { 
         $validator = Validator::make($request->all(), 
         [ 
@@ -134,7 +134,7 @@ class GroupController extends Controller
             'name' => 'required|unique:groups,name',
         ]);
 
-        $input = $request->only('name');
+        $input = $request->only('id','name');
 
         if ($validator->fails()) { 
             return redirect('/group/ret')->with('error', 'Gruppe eksisterer');          
@@ -151,9 +151,9 @@ class GroupController extends Controller
      * 
      * @return \Illuminate\Http\Response 
      */ 
-    public function delete(Request $request) 
-    { 
-        $group = Group::find(request('id'));
+    public static function delete(Request $request) 
+    {
+        $group = Group::find($request['id']);
         $group->delete();
         return redirect('/groups');
     }
