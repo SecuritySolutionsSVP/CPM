@@ -29,6 +29,7 @@ Route::get('/logout', [AuthController::class, 'logout']);
 
 Route::middleware(['auth'])->group(function() {
     Route::get('/usergroups', [UserGroupController::class, "allUsergroupsView"]);
+    Route::get('/group/{id}/users', [GroupController::class, "groupUsersView"]);
     Route::get('/usergroups/{id}/credentials', [UserGroupController::class, "groupCredentialsView"])->whereNumber('id');
     Route::get('/user/{id}/credentials', [UserGroupController::class, "myCredentialsView"])->whereNumber('id');
     

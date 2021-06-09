@@ -15,6 +15,17 @@ class GroupController extends Controller
         ]);
     }
 
+    function groupUsersView() {
+        $request = new Request();
+        $request->replace(['group_id' => request('id')]);
+        $users = GroupController::getGroupUsers($request);
+        $request->replace(['id' =>  $users]);
+        return view('group-users-overview', [
+            "users" => UserController::getUsersInfo($request),
+            "groupID" => request('id')
+        ]);
+    }
+
     /** 
      * Get User Groups
      * 
@@ -42,7 +53,7 @@ class GroupController extends Controller
      * 
      * @return User 
      */ 
-    public function getGroupUsers(Request $request) {
+    public static function getGroupUsers(Request $request) {
         $validator = Validator::make($request->all(), 
         [ 
             'group_id' => 'required',
@@ -60,11 +71,33 @@ class GroupController extends Controller
     }
 
     /** 
+     * Get Group Users
+     * 
+     * @return User 
+     */ 
+    public static function getNoneGroupUsers(Request $request) {
+        $validator = Validator::make($request->all(), 
+        [ 
+            'group_id' => 'required',
+        ]);
+
+        $input = $request->only('group_id');
+
+        $request = new Request();
+        $request->replace(['group_id' => $input['group_id']]);
+        $users = GroupController::getGroupUsers($request);
+
+        $noneUsers = User::all()->whereNotIn('id', $users);
+
+        return $noneUsers;
+    }
+
+    /** 
      * Add User to Group 
      * 
      * @return \Illuminate\Http\Response 
      */ 
-    public function addUserToGroup(Request $request) {
+    public static function addUserToGroup(Request $request) {
         $validator = Validator::make($request->all(), 
         [ 
             'user_id' => 'required',
@@ -84,7 +117,7 @@ class GroupController extends Controller
      * 
      * @return \Illuminate\Http\Response 
      */ 
-    public function removeUserFromGroup(Request $request) {
+    public static function removeUserFromGroup(Request $request) {
         $validator = Validator::make($request->all(), 
         [ 
             'user_id' => 'required',
