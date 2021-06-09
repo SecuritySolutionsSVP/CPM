@@ -15,5 +15,9 @@
     "Save": "Gem",
     "Cancel": "Afbryd",
     "Copy": "Kopier",
-    "Show password": "Vis adgangskode"
+    "Show password": "Vis adgangskode",
+    "New password": "Ny adgangskode",
+    "Create": "Opret",
+    "Asset": "System",
+    "Disclaimer: Only change this after you've changed the password locally": "Bemærk: Skift først koden efter du har skiftet koden på systemet."
 }
