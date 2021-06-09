@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\User;
 use Livewire\Component;
 
 class UserOverview extends Component
@@ -16,8 +17,22 @@ class UserOverview extends Component
         return view('livewire.user-overview');
     }
 
+    public function closeModal(){
+        $this->showModal=false;
+        $this->selectedUser='';
+    }
+
+    public function createUser(){
+        
+    }
+
+    public function deleteUser($userId){
+        $user = $this->findUserById($userId);
+        $user->delete();
+    }
+
     public function editUserModal($userId) {
-        $this->selectedGroup = $this->findGroupById($userId);
+        $this->selectedUser = $this->findUserById($userId);
         $this->showModal = true;
     }
 
