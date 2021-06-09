@@ -20,6 +20,25 @@ class UserController extends Controller
     }
 
     /** 
+     * Get Group Users
+     * 
+     * @return User 
+     */ 
+    public static function getUsersInfo(Request $request) {
+        $validator = Validator::make($request->all(), 
+        [ 
+            'id' => 'required',
+        ]);
+
+        $input = $request->only('id');
+        foreach ($input as $key => $value) {
+            $users = User::find($value);
+        }
+
+        return $users;
+    }
+
+    /** 
      * Create User 
      * 
      * @return \Illuminate\Http\Response 

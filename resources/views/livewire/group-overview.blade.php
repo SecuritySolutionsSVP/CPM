@@ -9,6 +9,7 @@
                     {{ $group->name }}
                 </div>
                 <div class="group-overview__list__item__icons">
+                    <a href="/group/{{$group->id}}/users"><i class="fas fa-users group-overview__list__item__icons__get-users"></i></a>
                     <i class="fas fa-cogs group-overview__list__item__icons__open-settings" wire:click="editGroupModal({{$group->id}})"></i>
                     <i class="fas fa-trash group-overview__list__item__icons__get-delete" wire:click="deleteGroupModal({{$group->id}})" onclick="confirm('Are you sure you want to remove this group?') || event.stopImmediatePropagation()"></i>
                 </div>
