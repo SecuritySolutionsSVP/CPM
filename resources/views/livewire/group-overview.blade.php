@@ -6,9 +6,6 @@
                 <div class="group-overview__list__item__name">
                     Name of Group {{$i}}
                 </div>
-                <div class="group-overview__list__item__created">
-                    <a href="#">14:01 07/06/2021</a>
-                </div>
                 <div class="group-overview__list__item__icons">
                     <i class="fas fa-cogs group-overview__list__item__icons__open-settings"></i>
                 </div>

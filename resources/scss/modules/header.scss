@@ -3,13 +3,17 @@
     height: 100px;
     width: 100%;
 
+    &__show-mobile{
+        line-height: 100px;
+        padding-right: 10px;
+    }
+
     .logo {
         display: inline-block;
         height: 100%;
     }
 
     &__navigation {
-        display: inline-block;
         float: right;
         text-align: right;
         height: 100px;

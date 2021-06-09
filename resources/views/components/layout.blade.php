@@ -10,8 +10,9 @@
         integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="/css/app.css" rel="stylesheet">
-    <livewire:styles/>
+    <livewire:styles />
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <script src="/js/app.js"></script>
     <title>{{ env('APP_NAME', 'CPM') }} - @yield('title')</title>
 </head>
 
@@ -19,24 +20,37 @@
     <div class="header">
         <div class="md:container md:mx-auto">
             <a href="/"><img class="logo" src="/images/logo-25.svg"></a>
-            <div class="header__navigation">
+            <div class="header__navigation hidden md:inline-block">
                 <div class="header__navigation__item"><a href="/">{{ trans('Dashboard') }}</a></div>
-                @if(Auth::check())
-                <div class="header__navigation__item"><a href="/logout">{{ trans('Logout') }}</a></div>
+                @if (Auth::check())
+                    <div class="header__navigation__item"><a href="/logout">{{ trans('Logout') }}</a></div>
                 @else
-                <div class="header__navigation__item"><a href="/login">{{ trans('Login') }}</a></div>
+                    <div class="header__navigation__item"><a href="/login">{{ trans('Login') }}</a></div>
                 @endif
             </div>
-            <div class="inline-block md:hidden">
-                <i class="fas fa-bars fa-2x hidden"></i>
+            <div class="inline-block md:hidden float-right">
+                <i class="header__show-mobile fas fa-bars fa-2x hidden"></i>
             </div>
         </div>
+    </div>
+    <div class="mobile-header">
+        <div class="text-right p-5">
+            <i class="fas fa-times fa-2x cursor-pointer" wire:click="$set('showModal', false)"></i>
+        </div>   
+            <div class="mobile-header__navigation">
+                <div class="mobile-header__navigation__item"><a href="/">{{ trans('Dashboard') }}</a></div>
+                @if (Auth::check())
+                    <div class="mobile-header__navigation__item"><a href="/logout">{{ trans('Logout') }}</a></div>
+                @else
+                    <div class="mobile-header__navigation__item"><a href="/login">{{ trans('Login') }}</a></div>
+                @endif
+            </div>
     </div>
     <div class="md:container md:mx-auto">
         {{ $slot }}
     </div>
 
-    <livewire:scripts/>
+    <livewire:scripts />
 
 </body>
 

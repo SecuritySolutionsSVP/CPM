@@ -8,7 +8,7 @@
             padding: 5px;
             border-bottom: 1px solid black;
             &__name{
-                width: 60%;
+                width: 80%;
                 display: inline-block;
                 float: left;
             }
@@ -28,19 +28,6 @@
 
                 &__open-settings{
                     color: purple
-                }
-            }
-            &__created{
-                text-align: right;
-                float: left;
-                width: 20%;
-                display: inline-block;
-
-                a{
-                    color: blue;
-                    &:hover{
-                        text-decoration: underline;
-                    }
                 }
             }
         }

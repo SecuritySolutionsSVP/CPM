@@ -1,0 +1,14 @@
+.mobile-header{
+    display: none;
+    position: fixed;
+    height: 100vh;
+    right: 0;
+    top: 0;
+    background-color: #90a8ee;
+    &__navigation{
+        padding: 0 100px;
+        &__item{
+            padding-top: 10px;
+        }
+    }
+}
