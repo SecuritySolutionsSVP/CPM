@@ -15,15 +15,15 @@ class Credential extends Model
     }
 
     public function privilegedGroups() {
-        return $this->belongsToMany(Group::class, 'group_credential_privileges');
+        return $this->belongsToMany(Group::class, 'group_credential_privileges')->withTimestamps();
     }
 
     public function privilegedUsers() {
-        return $this->belongsToMany(User::class, 'user_credential_privileges');
+        return $this->belongsToMany(User::class, 'user_credential_privileges')->withTimestamps();
     }
 
     public function credentialAccessLogs() {
-        return $this->hasMany(UserCredentialAccessLog::class);
+        return $this->hasMany(UserCredentialAccessLog::class)->withTimestamps();
     }
 
 

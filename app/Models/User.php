@@ -21,22 +21,22 @@ class User extends Authenticatable
 
     // gets the users 2FA tokens by exposing prop "$twoFactorTokens"
     public function twoFactorTokens() {
-        return $this->hasMany(TwoFactorUserToken::class);
+        return $this->hasMany(TwoFactorUserToken::class)->withTimestamps();
     }
 
     // creates prop "$credentialAccessLog" that accesses list of credentials via user_credential_access_log table
     public function credentialAccessLogs() {
-        return $this->hasMany(UserCredentialAccessLog::class);
+        return $this->hasMany(UserCredentialAccessLog::class)->withTimestamps();
     }
 
     // creates prop "$groups" that accesses list of groups via user_group table
     public function groups() {
-        return $this->belongsToMany(Group::class, 'user_group');
+        return $this->belongsToMany(Group::class, 'user_group')->withTimestamps();
     }
 
     // creates prop "$personalCredentialPrivileges" that accesses list of credentials via user_credential_privileges table
     public function personalCredentialPrivileges() {
-        return $this->belongsToMany(Credential::class, 'user_credential_privileges');
+        return $this->belongsToMany(Credential::class, 'user_credential_privileges')->withTimestamps();
     }
 
     public function getGroupCredentialPrivileges() {
@@ -91,5 +91,9 @@ class User extends Authenticatable
         'updated_at' => 'datetime',
         'deleted_at' => 'datetime'
     ];
-    protected $dates = ['created_at', 'updated_at', 'deleted_at'];
+    protected $dates = [
+        'created_at', 
+        'updated_at', 
+        'deleted_at'
+    ];
 }
