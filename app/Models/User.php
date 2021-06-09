@@ -5,13 +5,14 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Scout\Searchable;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable, Searchable;
+    use HasFactory, Notifiable, Searchable, SoftDeletes;
 
     // gets the role of the current user by exposing prop "$role"
     public function role() {
@@ -88,5 +89,7 @@ class User extends Authenticatable
     protected $casts = [
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
+        'deleted_at' => 'datetime'
     ];
+    protected $dates = ['created_at', 'updated_at', 'deleted_at']
 }
