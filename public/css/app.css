@@ -207,12 +207,6 @@
   display: inline-block;
   text-align: right;
 }
-.user-overview__list__item__icons__get-username {
-  color: green;
-}
-.user-overview__list__item__icons__get-password {
-  color: red;
-}
 .user-overview__list__item__icons__open-settings {
   color: purple;
 }
@@ -255,8 +249,12 @@
   z-index: 100;
   padding: 50px;
 }
+.user-modal label {
+  display: block;
+}
 .user-modal input {
   border: 1px solid black;
+  display: block;
 }
 .user-modal__overlay {
   background-color: black;
