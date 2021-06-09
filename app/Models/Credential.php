@@ -5,11 +5,12 @@ namespace App\Models;
 use betterapp\LaravelDbEncrypter\Traits\EncryptableDbAttribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Scout\Searchable;
 
 class Credential extends Model
 {
-    use HasFactory, Searchable, EncryptableDbAttribute;
+    use HasFactory, Searchable, EncryptableDbAttribute, SoftDeletes;
 
     public function credentialGroup() {
         return $this->belongsTo(CredentialGroup::class);
