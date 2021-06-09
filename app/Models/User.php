@@ -21,12 +21,12 @@ class User extends Authenticatable
 
     // gets the users 2FA tokens by exposing prop "$twoFactorTokens"
     public function twoFactorTokens() {
-        return $this->hasMany(TwoFactorUserToken::class)->withTimestamps();
+        return $this->hasMany(TwoFactorUserToken::class);
     }
 
     // creates prop "$credentialAccessLog" that accesses list of credentials via user_credential_access_log table
     public function credentialAccessLogs() {
-        return $this->hasMany(UserCredentialAccessLog::class)->withTimestamps();
+        return $this->hasMany(UserCredentialAccessLog::class);
     }
 
     // creates prop "$groups" that accesses list of groups via user_group table

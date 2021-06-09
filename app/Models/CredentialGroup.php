@@ -11,7 +11,7 @@ class CredentialGroup extends Model
     use HasFactory, Searchable;
 
     public function credentials() {
-        return $this->hasMany(Credential::class)->withTimestamps();
+        return $this->hasMany(Credential::class);
     }
 
     public function groups() {

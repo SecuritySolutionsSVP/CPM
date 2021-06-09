@@ -24,7 +24,7 @@ class Credential extends Model
     }
 
     public function credentialAccessLogs() {
-        return $this->hasMany(UserCredentialAccessLog::class)->withTimestamps();
+        return $this->hasMany(UserCredentialAccessLog::class);
     }
 
      /** 
