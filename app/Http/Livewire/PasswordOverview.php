@@ -19,6 +19,8 @@ class PasswordOverview extends Component
     
     public $credentials;
     public $shownCredentials;
+    public $searchString;
+
     public $selectedCredential;
     public $shouldCreateNewCredentialGroup = false;
     
@@ -41,6 +43,16 @@ class PasswordOverview extends Component
 
     public function render()
     {
+        $credentials = $this->credentials;
+        $foundCredentials = Credential::search($this->searchString)->get();
+        $foundCredentials = $foundCredentials->filter(function($cred) use ($credentials) {
+            return $credentials->contains('id', $cred->id);
+        });
+        if($foundCredentials->count() > 0) {
+            $this->shownCredentials = $foundCredentials;
+        } else {
+            $this->shownCredentials = $this->credentials;
+        }
         return view('livewire.password-overview');
     }
 

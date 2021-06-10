@@ -12,14 +12,18 @@ use Illuminate\Support\Facades\Auth;
 class CredentialController extends Controller
 {
     function notificationCredentialsView() {
+        $credentials = Auth::user()->getAllCredentialPrivileges();
+        $credentials->searchable();
         return view('dashboard', [
-            'credentials' => Auth::user()->getAllCredentialPrivileges(),
+            'credentials' => $credentials,
         ]);
     }
 
     function allCredentialsView() {
+        $credentials = Credential::all();
+        $credentials->searchable();
         return view('passwords-view', [
-            'credentials' => Credential::all(),
+            'credentials' => $credentials,
         ]);
     }
 

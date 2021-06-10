@@ -37,6 +37,15 @@ class Credential extends Model
         'password',
     ];
     /**
+     * Get the indexable data array for the model.
+     *
+     * @return array
+     */
+    public function toSearchableArray()
+    {
+        return $this->load('credentialGroup')->toArray();
+    }
+    /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
