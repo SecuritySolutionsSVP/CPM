@@ -10,12 +10,29 @@ use Illuminate\Http\Request;
 class GroupOverview extends Component
 {
     public $groups;
+    public $shownGroups;
+    public $searchString;
     public $selectedGroup;
     public $createModal = false;
     public $editModal = false;
     
+    public function mount() {
+        $this->shownGroups = $this->groups;
+    }
     public function render()
     {
+        $groups = $this->groups;
+        $foundGroups = Group::search($this->searchString)->get();
+
+        $foundGroups = $foundGroups->filter(function($group) use ($groups) {
+            return $groups->contains('id', $group->id);
+        });
+
+        if($foundGroups->count() > 0) {
+            $this->shownGroups = $foundGroups;
+        } else {
+            $this->shownGroups = $this->groups;
+        }
         return view('livewire.group-overview');
     }
 
