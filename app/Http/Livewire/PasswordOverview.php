@@ -8,6 +8,7 @@ use App\Models\UserCredentialAccessLog;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request;
 use Livewire\Component;
 
 class PasswordOverview extends Component
@@ -21,6 +22,8 @@ class PasswordOverview extends Component
     public $editModal = false;
     public $createModal = false; 
     public $success = false;
+
+    public $refreshPage = false;
 
     public function render()
     {
@@ -54,10 +57,21 @@ class PasswordOverview extends Component
         ]);
 
         $this->success = true;
+        $this->refreshPage = true;
     }
 
     public function editPassword($formData) {
-        ddd($formData);
+        $this->selectedCredential->password = $formData['password'];
+        $this->selectedCredential->password_last_updated_at = Carbon::now();
+        $this->selectedCredential->save();
+        $this->success = true;
+        $this->refreshPage = true;
+    }
+
+    public function deleteCredential($credId) {
+        $credential = $this->findCredentialById($credId);
+        $credential->delete();
+        $this->refreshPage = true;
     }
 
     public function displayCredentialAccessModal($credId) {

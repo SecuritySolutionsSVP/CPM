@@ -15,6 +15,7 @@
                     <div class="password-list__list__item__icons">
                         <i class="fas fa-user password-list__list__item__icons__get-username" wire:click="displayCredentialAccessModal({{$credential->id}})"></i>
                         <i class="fas fa-key password-list__list__item__icons__get-password" wire:click="displayCredentialEditModal({{$credential->id}})"></i>
+                        <i class="fas fa-trash password-list__list__item__icons__get-delete" wire:click="deleteCredential({{$credential->id}})" onclick="confirm('{{ trans('Are you sure you want to remove this credential?')}}') || event.stopImmediatePropagation()"></i>
                         {{-- <i class="fas fa-cogs password-list__list__item__icons__open-settings"></i> --}}
                     </div>
                 </div>
@@ -35,8 +36,10 @@
                     </div>
                     {{ Form::label('password', trans('Password')) }}
                     <div>
-                        {{ Form::password('password') }} <i class="fas fa-copy" title="{{ trans('Copy') }}"></i> <i class="fas fa-eye"></i> <i
-                            class="fas fa-eye-slash"></i>
+                        {{ Form::password('password') }} 
+                        <i class="fas fa-copy" title="{{ trans('Copy') }}"></i> 
+                        <i class="fas fa-eye"></i>
+                        <i class="fas fa-eye-slash"></i>
                     </div>
                 </div>
                 <div class="password-modal__accesslog">
@@ -66,7 +69,7 @@
             <i class="fas fa-times fa-2x cursor-pointer" wire:click="hideAllModals()"></i>
         </div>
         <div>
-            <form wire:submit.prevent="editPassword(Object.fromEntries(new FormData($event.target)))"></form>
+            <form wire:submit.prevent="editPassword(Object.fromEntries(new FormData($event.target)))">
                 <h1> {{ trans('Change password') }} </h2>
                 <div class="password-modal__credentials">
                     <p>{{ trans('Disclaimer: Only change this after you\'ve changed the password locally') }}</p>
@@ -78,12 +81,17 @@
                     </div>
                 </div>
                 <div>
-                    <button type="button" wire:click="hidAllModals()"
+                    <button type="button" wire:click="hideAllModals()"
                         class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">{{ trans('Cancel') }}</button>
-                    <button
+                    <button type="submit"
                         class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">{{ trans('Save') }}</button>
                 </div>
             </form>
+            @if ($success)
+                <div class="text-green-700">
+                    {{ trans('Successfully changed to new password!') }}
+                </div>
+            @endif
         </div>
     </div>
     <div class="password-modal__overlay" wire:click="hideAllModals()"></div>
@@ -152,5 +160,9 @@
     </div>
     <div class="password-modal__overlay" wire:click="hideAllModals()"></div>
     @endif
-
+    @if ($refreshPage)
+        <script>
+            location.reload();
+        </script>
+    @endif
 </div>
