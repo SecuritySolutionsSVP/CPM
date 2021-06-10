@@ -19,5 +19,17 @@
     "New password": "Ny adgangskode",
     "Create": "Opret",
     "Asset": "System",
-    "Disclaimer: Only change this after you've changed the password locally": "Bemærk: Skift først koden efter du har skiftet koden på systemet."
+    "Disclaimer: Only change this after you've changed the password locally": "Bemærk: Skift først koden efter du har skiftet koden på systemet.",
+    "First name": "Fornavn",
+    "Last name": "Efternavn",
+    "Email": " Email",
+    "Language": "Sprog",
+    "Choose language": "Vælg Sprog",
+    "Choose Language": "Vælg Sprog",
+    "English": "Engelsk",
+    "Reset Password": "Reset Password",
+    "Delete User": "Slet Bruger",
+    "Save User": "Gem Bruger",
+    "Add user" : "Tilføj Bruger",
+    "Create new Password" : "Opret nyt kodeord"
 }
