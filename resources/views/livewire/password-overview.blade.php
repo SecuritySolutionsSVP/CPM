@@ -27,8 +27,26 @@
                 <i class="fas fa-times fa-2x cursor-pointer" wire:click="hideAllModals()"></i>
             </div>
             <div>
-                <h2> {{ trans('Passwords for') }} {{ $selectedCredential->username}}</h2>
+                <h2> {{ trans('Passwords for') }} {{ $selectedCredential->credentialGroup->name}}</h2>
                 <div class="password-modal__credentials">
+                    <p>{{ trans('Username') }}: {{ $selectedCredential->username }} <i class="fas fa-copy"></i></p>
+                    @if ($requireTwoFactor)
+                    <form wire:submit.prevent="validateTwoFactorCode(Object.fromEntries(new FormData($event.target)))">
+                        <input type="text" name="token" placeholder="{{ trans('2FA code from email') }}">
+                        <button>{{ trans('Validate') }}</button>
+                    </form>
+                    @elseif($showPassword)
+                    {{ $credential->password }}
+                    @else
+                    <button wire:click="requestAccessToCredential()" 
+                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
+                        {{ trans('Fetch password') }}
+                    </button>
+                    @endif
+                    @if($error)
+                    <p>{{ trans('Something went wrong') }}</p>
+                    @endif
+{{-- 
                     {{ Form::label('username', trans('Username')) }}
                     <div>
                         {{ Form::text('username') }} <i class="fas fa-copy"></i>
@@ -39,7 +57,7 @@
                         <i class="fas fa-copy" title="{{ trans('Copy') }}"></i> 
                         <i class="fas fa-eye"></i>
                         <i class="fas fa-eye-slash"></i>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="password-modal__accesslog">
                     @foreach ($selectedCredential->credentialAccessLogs->sortBy('created_at')->reverse() as $credLog)

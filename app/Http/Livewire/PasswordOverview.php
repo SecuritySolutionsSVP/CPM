@@ -2,10 +2,10 @@
 
 namespace App\Http\Livewire;
 
-use App\Mail\TwoFactorMail;
+use App\Mail\TwoFactorCredentialMail;
 use App\Models\Credential;
 use App\Models\CredentialGroup;
-use App\Models\TwoFactorUserToken;
+use App\Models\TwoFactorCredentialToken;
 use App\Models\UserCredentialAccessLog;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
@@ -45,18 +45,19 @@ class PasswordOverview extends Component
 
 
         if($credential->is_sensitive) {
-            $token = TwoFactorUserToken::factory()->create([
+            $token = TwoFactorCredentialToken::create([
                 'credential_id' => $credential->id,
+                'token' => TwoFactorCredentialToken::generateCode(6),
+                'expiration' => Carbon::now()->addMinutes(10),
             ]);
-            $this->tokenId = $token->id;
 
-            Mail::to($user)->send(new TwoFactorMail($token));
-            
+            Mail::to($user)->send(new TwoFactorCredentialMail($token));
+            $this->token = $token;
             $this->requireTwoFactor = true;
         } else {
             UserCredentialAccessLog::create([
                 'user_id' => $user->id,
-                'credential_id' => $credential->id
+                'credential_id' => $credential->id,
             ]);
             $this->requireTwoFactor = false;
             $this->showPassword = true;
@@ -157,6 +158,8 @@ class PasswordOverview extends Component
         $this->createModal = false;
         $this->shouldCreateNewCredentialGroup = "false";
         $this->selectedCredential = null;
+        $this->showPassword = false;
+        $this->requireTwoFactor = false;
         $this->success = null;
         $this->error = null;
     }

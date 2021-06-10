@@ -36,9 +36,10 @@ class TwoFactorCredentialMail extends Mailable
      */
     public function build()
     {
+        $this->token->setVisible(['token']);
         return $this->view('mail.two_factor_credential_mail')
                     ->with([
-                        'token' => $this->token->name,
+                        'token' => $this->token->token,
                         'expiration' => $this->token->expiration,
                         'credential' => $this->token->credential
                     ]);

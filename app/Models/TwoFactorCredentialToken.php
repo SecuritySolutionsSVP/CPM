@@ -37,4 +37,15 @@ class TwoFactorCredentialToken extends Model
     protected $hidden = [
         'token',
     ];
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'credential_id',
+        'token',
+        'expiration'
+    ];
 }
