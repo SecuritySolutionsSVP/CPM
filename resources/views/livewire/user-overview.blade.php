@@ -1,5 +1,5 @@
 <div>
-    <button class="bg-green-500 hover:bg-green-700 mt-3 text-white font-bold py-2 px-4 rounded"  wire:click="$set('showModal', true)">Opret Bruger</button>
+    <button class="bg-blue-500 hover:bg-blue-700 mt-3 text-white font-bold py-2 px-4 rounded"  wire:click="$set('showModal', true)">{{ trans('Add user') }}</button>
     <div class="user-overview">
         <div class="user-overview__list">
             @foreach($users as $user)
