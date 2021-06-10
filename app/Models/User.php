@@ -59,6 +59,16 @@ class User extends Authenticatable
     }
 
     /**
+     * Get the indexable data array for the model.
+     *
+     * @return array
+     */
+    public function toSearchableArray()
+    {
+        return $this->load(['role', 'groups'])->toArray();
+    }
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
