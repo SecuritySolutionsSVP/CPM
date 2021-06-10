@@ -329,3 +329,10 @@
   clear: both;
   display: table;
 }
+
+h1 {
+  font-size: 30px;
+  font-weight: bold;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
