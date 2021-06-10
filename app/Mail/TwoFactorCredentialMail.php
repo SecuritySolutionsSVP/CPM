@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class TwoFactorMail extends Mailable
+class TwoFactorCredentialMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -36,7 +36,7 @@ class TwoFactorMail extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.two_factor_mail')
+        return $this->view('mail.two_factor_credential_mail')
                     ->with([
                         'token' => $this->token->name,
                         'expiration' => $this->token->expiration,

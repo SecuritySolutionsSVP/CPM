@@ -4,7 +4,7 @@
 @stop
 
 <div class="login">
-    <img class="logo" src="/images/logo-25.svg">
+    <img class="logo" src="{{ env('BRANDING_IMAGE_PATH', '')}}">
     {{ Form::open(['url' => 'login', 'class' => 'login__form']) }}
     <p>
         {{ Form::label('email', trans('Email Address')) }}

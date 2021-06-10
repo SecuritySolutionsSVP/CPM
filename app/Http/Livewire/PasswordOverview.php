@@ -2,12 +2,15 @@
 
 namespace App\Http\Livewire;
 
+use App\Mail\TwoFactorMail;
 use App\Models\Credential;
 use App\Models\CredentialGroup;
+use App\Models\TwoFactorUserToken;
 use App\Models\UserCredentialAccessLog;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Request;
 use Livewire\Component;
 
@@ -21,13 +24,60 @@ class PasswordOverview extends Component
     public $showModal = false;
     public $editModal = false;
     public $createModal = false; 
-    public $success = false;
 
+    public $requireTwoFactor = false;
+    public $showPassword = false;
+    
+    public $error = false;
+    public $success = false;
     public $refreshPage = false;
+
+    public $token;
 
     public function render()
     {
         return view('livewire.password-overview');
+    }
+
+    public function requestAccessToCredential() {
+        $credential = $this->selectedCredential;
+        $user = Auth::user();
+
+
+        if($credential->is_sensitive) {
+            $token = TwoFactorUserToken::factory()->create([
+                'credential_id' => $credential->id,
+            ]);
+            $this->tokenId = $token->id;
+
+            Mail::to($user)->send(new TwoFactorMail($token));
+            
+            $this->requireTwoFactor = true;
+        } else {
+            UserCredentialAccessLog::create([
+                'user_id' => $user->id,
+                'credential_id' => $credential->id
+            ]);
+            $this->requireTwoFactor = false;
+            $this->showPassword = true;
+        }
+    }
+
+    public function validateTwoFactorCode($formData) {
+        $credential = $this->selectedCredential;
+        $user = Auth::user();
+
+        if($formData['token'] == $this->token->token) {
+            UserCredentialAccessLog::create([
+                'user_id' => $user->id,
+                'credential_id' => $credential->id
+            ]);
+            $this->error = false;
+            $this->requireTwoFactor = false;
+            $this->showPassword = true;
+        } else {
+            $this->error = true;
+        }
     }
 
     public function createCredential($formData) {
@@ -108,5 +158,6 @@ class PasswordOverview extends Component
         $this->shouldCreateNewCredentialGroup = "false";
         $this->selectedCredential = null;
         $this->success = null;
+        $this->error = null;
     }
 }
