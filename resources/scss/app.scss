@@ -9,6 +9,9 @@
 @import "modules/user-modal.scss";
 @import "modules/mobile-header.scss";
 
+.searchbar{
+    border: 1px solid black;
+}
 .clearfix::after {
     content: "";
     clear: both;

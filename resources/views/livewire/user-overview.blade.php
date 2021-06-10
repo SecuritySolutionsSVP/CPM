@@ -1,7 +1,7 @@
 <div>
     <div>
         <button class="bg-blue-500 hover:bg-blue-700 mt-3 text-white font-bold py-2 px-4 rounded"  wire:click="$set('showModal', true)">{{ trans('Add user') }}</button>
-        <input type="text" wire:model.debounce.500ms="searchString">
+        <input type="text" class="searchbar" wire:model.debounce.500ms="searchString" placeholder="{{trans('Search')}}">
     </div>
     <div class="user-overview">
         <div class="user-overview__list">
