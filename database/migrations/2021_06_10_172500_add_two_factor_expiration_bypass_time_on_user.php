@@ -15,7 +15,7 @@ class AddTwoFactorExpirationBypassTimeOnUser extends Migration
     {
         Schema::table('users', function(Blueprint $table)
 		{
-			$table->timestampTz('two_factor_expiration_bypass_time');
+			$table->timestampTz('two_factor_expiration_bypass_time')->nullable();
 		});
     }
 
