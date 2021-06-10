@@ -34,18 +34,23 @@
                 @endif
             </div>
             <div class="inline-block md:hidden float-right">
-                <i class="header__show-mobile fas fa-bars fa-2x hidden"></i>
+                <i class="header__show-mobile fas fa-bars fa-2x hidden" onclick="showMobileHeader()"></i>
             </div>
         </div>
     </div>
-    <div class="mobile-header">
+    <div class="mobile-header" id="js-mobile-header">
         <div class="text-right p-5">
-            <i class="fas fa-times fa-2x cursor-pointer" wire:click="$set('showModal', false)"></i>
+            <i class="fas fa-times fa-2x cursor-pointer" onclick="showMobileHeader()" wire:click="$set('showModal', false)"></i>
         </div>   
             <div class="mobile-header__navigation">
                 <div class="mobile-header__navigation__item"><a href="/">{{ trans('Dashboard') }}</a></div>
-                @if (Auth::check())
-                    <div class="mobile-header__navigation__item"><a href="/logout">{{ trans('Logout') }}</a></div>
+                @if(Auth::check() && (Auth::user()->role_id == 1 || Auth::user()->role_id == 2))
+                <div class="mobile-header__navigation__item"><a href="/users">{{ trans('Users') }}</a></div>
+                <div class="mobile-header__navigation__item"><a href="/credentials">{{ trans('Credentials') }}</a></div>
+                @endif
+                <div class="mobile-header__navigation__item"><a href="/groups">{{ trans('Groups') }}</a></div>
+                @if(Auth::check())
+                <div class="mobile-header__navigation__item"><a href="/logout">{{ trans('Logout') }}</a></div>
                 @else
                     <div class="mobile-header__navigation__item"><a href="/login">{{ trans('Login') }}</a></div>
                 @endif
@@ -56,6 +61,24 @@
     </div>
 
     <livewire:scripts />
+    <script>
+    function showMobileHeader() {
+        var x = document.getElementById("js-mobile-header");
+        if (x.style.display === "none") {
+          x.style.display = "block";
+        } else {
+          x.style.display = "none";
+        }
+    }
+    window.addEventListener("resize", closeMobileMenuOnResize);
+
+    function closeMobileMenuOnResize(){
+        var x = document.getElementById("js-mobile-header");
+        if(x.style.display ==="block"){
+            x.style.display = 'none';
+        }
+    }
+    </script>
 </body>
 
 </html>
