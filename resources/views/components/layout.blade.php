@@ -19,7 +19,7 @@
 <body>
     <div class="header">
         <div class="md:container md:mx-auto">
-            <a href="/"><img class="logo" src="/images/logo-25.svg"></a>
+            <a href="/"><img class="logo" src="{{ env('BRANDING_IMAGE_PATH', '')}}"></a>
             <div class="header__navigation hidden md:inline-block">
                 <div class="header__navigation__item"><a href="/">{{ trans('Dashboard') }}</a></div>
                 <div class="header__navigation__item"><a href="/users">{{ trans('Users') }}</a></div>
