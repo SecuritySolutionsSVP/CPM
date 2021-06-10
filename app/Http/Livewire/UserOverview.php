@@ -10,12 +10,26 @@ use Livewire\Component;
 class UserOverview extends Component
 {
     public $users;
+    public $shownUsers;
+    public $searchString;
     public $selectedUser;
     public $showModal = false;
 
 
     public function render()
     {
+        $users = $this->users;
+        $foundUsers = User::search($this->searchString)->get();
+
+        $foundUsers = $foundUsers->filter(function($user) use ($users) {
+            return $users->contains('id', $user->id);
+        });
+
+        if($foundUsers->count() > 0) {
+            $this->shownUsers = $foundUsers;
+        } else {
+            $this->shownUsers = $this->users;
+        }
         return view('livewire.user-overview');
     }
 

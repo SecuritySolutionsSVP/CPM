@@ -10,8 +10,10 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
     function userView() {
+        $users = User::all();
+        $users->searchable();
         return view('user-view', [
-            "users" => User::all(),
+            "users" => $users,
         ]);
     }
 

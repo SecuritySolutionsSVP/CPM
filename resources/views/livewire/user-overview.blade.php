@@ -1,8 +1,11 @@
 <div>
-    <button class="bg-blue-500 hover:bg-blue-700 mt-3 text-white font-bold py-2 px-4 rounded"  wire:click="$set('showModal', true)">{{ trans('Add user') }}</button>
+    <div>
+        <button class="bg-blue-500 hover:bg-blue-700 mt-3 text-white font-bold py-2 px-4 rounded"  wire:click="$set('showModal', true)">{{ trans('Add user') }}</button>
+        <input type="text" wire:model.debounce.500ms="searchString">
+    </div>
     <div class="user-overview">
         <div class="user-overview__list">
-            @foreach($users as $user)
+            @foreach($shownUsers->sortBy('first_name') as $user)
             <div class="user-overview__list__item clearfix cursor-pointer" wire:click="editUserModal({{$user->id}})">
                 <div class="user-overview__list__item__name">
                     {{ $user->fullName() }}
