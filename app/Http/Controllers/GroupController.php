@@ -21,7 +21,6 @@ class GroupController extends Controller
         $request = new Request();
         $request->replace(['group_id' => request('id')]);
         $users = GroupController::getGroupUsers($request);
-        $users->searchable();
         $request->replace(['id' =>  $users]);
         return view('group-users-overview', [
             "users" => UserController::getUsersInfo($request),
