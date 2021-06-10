@@ -6,7 +6,7 @@
         </p> 
         <div class="password-list__list">
             @foreach ($shownCredentials->sortBy('username') as $credential)
-                <div class="password-list__list__item clearfix">
+                <div class="password-list__list__item clearfix" wire:click="displayCredentialAccessModal({{$credential->id}})">
                     <div class="password-list__list__item__name">
                         {{ $credential->username }} {{ trans('Passwords for') }} {{ $credential->credentialGroup->name }}
                     </div>
