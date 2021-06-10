@@ -68,6 +68,7 @@
   background-color: royalblue;
   color: white;
 }
+
 .password-list {
   padding-top: 10px;
 }
@@ -118,12 +119,13 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 600px;
-  min-height: 700px;
+  width: 90%;
   height: auto;
   background-color: white;
   z-index: 100;
-  padding: 50px;
+  padding: 25px;
+  overflow: auto;
+  max-height: 90%;
 }
 .password-modal__credentials {
   padding-top: 25px;
@@ -150,6 +152,16 @@
   left: 0px;
   z-index: 50;
 }
+@media (min-width: 1024px) {
+  .password-modal {
+    width: 600px;
+    min-height: 700px;
+    height: auto;
+    background-color: white;
+    z-index: 100;
+    padding: 50px;
+  }
+}
 
 .group-overview {
   padding-top: 10px;
@@ -174,10 +186,10 @@
   display: inline-block;
   text-align: right;
 }
-.group-overview__list__item__icons__get-username {
+.group-overview__list__item__icons__get-users {
   color: green;
 }
-.group-overview__list__item__icons__get-password {
+.group-overview__list__item__icons__get-delete {
   color: red;
 }
 .group-overview__list__item__icons__open-settings {
@@ -216,12 +228,13 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 600px;
-  min-height: 700px;
+  width: 90%;
   height: auto;
   background-color: white;
   z-index: 100;
-  padding: 50px;
+  padding: 25px;
+  overflow: auto;
+  max-height: 90%;
 }
 .group-modal input {
   border: 1px solid black;
@@ -236,18 +249,33 @@
   left: 0px;
   z-index: 50;
 }
+.group-modal__name {
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+@media (min-width: 1024px) {
+  .group-modal {
+    width: 600px;
+    min-height: 700px;
+    height: auto;
+    background-color: white;
+    z-index: 100;
+    padding: 50px;
+  }
+}
 
 .user-modal {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 600px;
-  min-height: 700px;
+  width: 90%;
   height: auto;
   background-color: white;
   z-index: 100;
-  padding: 50px;
+  padding: 25px;
+  overflow: auto;
+  max-height: 90%;
 }
 .user-modal label {
   display: block;
@@ -265,6 +293,16 @@
   top: 0px;
   left: 0px;
   z-index: 50;
+}
+@media (min-width: 1024px) {
+  .user-modal {
+    width: 600px;
+    min-height: 700px;
+    height: auto;
+    background-color: white;
+    z-index: 100;
+    padding: 50px;
+  }
 }
 
 .mobile-header {

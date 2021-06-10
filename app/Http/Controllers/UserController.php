@@ -52,7 +52,7 @@ class UserController extends Controller
             'role_id' => 'required',
             'email' => 'required|email|unique:users,email', 
             'password' => 'required', 
-            'c_password' => 'required|same:password', 
+            'c_password' => 'required|same:password',
         ]);
 
         $input = $request->all();

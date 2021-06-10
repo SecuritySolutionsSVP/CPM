@@ -1,7 +1,7 @@
 <div>
     <div class="password-list">
         <p>
-            <i class="fas fa-plus password-list__list__item__icons__open-settings" wire:click="displayCredentialCreateModal()"></i>
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded mb-3" wire:click="displayCredentialCreateModal()">{{ trans('Create new Password') }}</button>
         </p> 
         <div class="password-list__list">
             @foreach ($credentials as $credential)
@@ -16,7 +16,6 @@
                         <i class="fas fa-user password-list__list__item__icons__get-username" wire:click="displayCredentialAccessModal({{$credential->id}})"></i>
                         <i class="fas fa-key password-list__list__item__icons__get-password" wire:click="displayCredentialEditModal({{$credential->id}})"></i>
                         <i class="fas fa-trash password-list__list__item__icons__get-delete" wire:click="deleteCredential({{$credential->id}})" onclick="confirm('{{ trans('Are you sure you want to remove this credential?')}}') || event.stopImmediatePropagation()"></i>
-                        {{-- <i class="fas fa-cogs password-list__list__item__icons__open-settings"></i> --}}
                     </div>
                 </div>
             @endforeach
@@ -110,7 +109,7 @@
                             {{-- <label for="newCredentialGroup">{{ trans('Use existing or create new asset') }}</label> --}}
                             <div>
                                 <input type="radio" name="newCredentialGroup" id="newCredentialGroup_1" wire:model="shouldCreateNewCredentialGroup" wire:key="yes" value="true" /> 
-                                <label for="newCredentialGroup_1">{{ trans('New asset') }}</label>
+                                <label for="newCredentialGroup_1">{{ trans('New asset') }}</label><br>
                                 <input type="radio" name="newCredentialGroup" id="newCredentialGroup_2" wire:model="shouldCreateNewCredentialGroup" wire:key="no" value="false" checked/> 
                                 <label for="newCredentialGroup_2">{{ trans('Existing asset') }}</label>
                             </div>
@@ -118,7 +117,7 @@
                                 @if (filter_var($shouldCreateNewCredentialGroup, FILTER_VALIDATE_BOOLEAN))
                                 <label for="asset">{{ trans('New asset') }}</label>
                                 <div>
-                                    <input x-show="false" type="text" name="asset" placeholder="{{ trans('New asset') }}">
+                                    <input x-show="false" type="text" name="asset">
                                 </div>
                                 @else
                                 <label for="asset">{{ trans('Select existing asset') }}</label>
