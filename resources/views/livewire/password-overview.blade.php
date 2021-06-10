@@ -4,7 +4,7 @@
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded mb-3" wire:click="displayCredentialCreateModal()">{{ trans('Create new Password') }}</button>
         </p> 
         <div class="password-list__list">
-            @foreach ($credentials as $credential)
+            @foreach ($shownCredentials as $credential)
                 <div class="password-list__list__item clearfix">
                     <div class="password-list__list__item__name">
                         {{ $credential->username }} {{ trans('Passwords for') }} {{ $credential->credentialGroup->name }}
@@ -60,7 +60,10 @@
                     </div> --}}
                 </div>
                 <div class="password-modal__accesslog">
-                    @foreach ($selectedCredential->credentialAccessLogs->sortBy('created_at')->reverse() as $credLog)
+                    @foreach ($selectedCredential->credentialAccessLogs
+                            ->where('created_at', '>=', $selectedCredential->password_last_updated_at)
+                            ->sortBy('created_at')
+                            ->reverse() as $credLog)
                         <div>
                             {{ trans('password seen') }} {{ Timezone::convertToLocal($credLog->created_at) }} {{ trans('by') }} {{ $credLog->user->fullName() }} {{-- 09:35 - 26/05/2021 --}}
                         </div>

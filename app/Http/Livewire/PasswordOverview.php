@@ -18,6 +18,7 @@ class PasswordOverview extends Component
 {
     
     public $credentials;
+    public $shownCredentials;
     public $selectedCredential;
     public $shouldCreateNewCredentialGroup = false;
     
@@ -33,6 +34,10 @@ class PasswordOverview extends Component
     public $refreshPage = false;
 
     public $token;
+
+    public function mount() {
+        $this->shownCredentials = $this->credentials;
+    }
 
     public function render()
     {
