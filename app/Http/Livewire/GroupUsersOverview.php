@@ -13,10 +13,17 @@ class GroupUsersOverview extends Component
     public $users;
     public $shownUsers;
     public $searchString;
-    public $noneUsers;
     public $groupID;
+    
     public $addModal = false;
+    public $addUserSearchString;
+    public $noneUsers;
+    public $shownNoneUsers;
 
+    public function mount() {
+        $this->getNoneUsers();
+        $this->shownUsers = $this->users;
+    }
     public function render()
     {
         $users = $this->users;
@@ -31,6 +38,18 @@ class GroupUsersOverview extends Component
         } else {
             $this->shownUsers = $this->users;
         }
+
+        $noneUsers = $this->noneUsers;
+        $foundNoneUsers = User::search($this->addUserSearchString)->get();
+        $foundNoneUsers = $foundNoneUsers->filter(function($user) use ($noneUsers) {
+            return $noneUsers->contains('id', $user->id);
+        });
+        if($foundNoneUsers->count() > 0) {
+            $this->shownNoneUsers = $foundNoneUsers;
+        } else {
+            $this->shownNoneUsers = $this->users;
+        }
+
         return view('livewire.group-users-overview');
     }
 

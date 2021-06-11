@@ -30,8 +30,9 @@
                 <h2> {{ trans('Group settings') }}</h2>
                 <div class="group-modal__name">
                     {{ Form::label('Users', trans('Users')) }}
+                    <input type="text" class="searchbar" wire:model.debounce.500ms="addUserSearchString" placeholder="{{trans('Search')}}">
                     <div>
-                        @foreach ($noneUsers as $userx)
+                        @foreach ($shownNoneUsers->sortBy('email') as $userx)
                             <div class="group-overview__list__item clearfix">
                                 <div class="group-overview__list__item__name">
                                     {{ $userx->email }}
