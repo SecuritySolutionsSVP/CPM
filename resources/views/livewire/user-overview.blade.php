@@ -46,9 +46,11 @@
                 </select><br>
                 <label for="role_id">{{ trans('Role') }}</label>
                 <select name="role_id">
-                    <option value="1" @if ($selectedUser->role_id == 1)
-                        selected      
-                    @endif>{{ trans('Admin') }}</option>
+                    @if(Auth::user()->role->priviledge_level == 1) 
+                    <option value="1" @if ($selectedUser->role_id == 1) selected @endif>
+                        {{ trans('Admin') }}
+                    </option> 
+                    @endif
                     <option value="2" @if ($selectedUser->role_id == 2)
                         selected
                     @endif>{{ trans('Manager') }}</option>
@@ -79,7 +81,9 @@
                     </select><br>
                     <label for="role_id">{{ trans('Role') }}</label>
                     <select name="role_id">
+                        @if(Auth::user()->role->priviledge_level == 1) 
                         <option value="1">{{ trans('Admin') }}</option>
+                        @endif
                         <option value="2">{{ trans('Manager') }}</option>
                         <option value="3">{{ trans('User') }}</option>
                     </select>

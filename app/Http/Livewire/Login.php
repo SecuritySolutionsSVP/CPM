@@ -49,9 +49,9 @@ class Login extends Component
             if(Auth::attempt($this->credentials)) {
                 $user = Auth::user();
                 $user->two_factor_expiration_bypass_time = Carbon::now()
-                                    ->addDays(env('APP_2FA_REMEMBER_DAYS', 0))
-                                    ->addHours(env('APP_2FA_REMEMBER_HOURS', 0))
-                                    ->addMinutes(env('APP_2FA_REMEMBER_MINUTES', 0));
+                                    ->addDays(env('APP_2FA_EXPIRATION_DAYS', 0))
+                                    ->addHours(env('APP_2FA_EXPIRATION_HOURS', 0))
+                                    ->addMinutes(env('APP_2FA_EXPIRATION_MINUTES', 0));
                 $user->save();
                 return redirect()->intended();
             } else {

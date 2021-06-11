@@ -35,5 +35,10 @@
     "Search":"Søg",
     "All": "Alle",
     "My": "Mine",
-    "Credentials": "Adgangskoder"
+    "Credentials": "Adgangskoder",
+    "Danish": "Dansk",
+    "Role": "Rolle",
+    "User": "Bruger",
+    "Manager": "Manager",
+    "Admin": "Administrator"
 }
