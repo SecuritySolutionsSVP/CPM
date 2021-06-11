@@ -1,9 +1,9 @@
 <x-layout>
     @section('title')
-        {{ trans('User') }}
+        {{ trans('Profile') }}
     @stop
     @section('header')
-        <h1 class="text-center">{{ trans('All') }} {{ trans('User') }}</h1>
+        <h1 class="text-center">{{ trans('Profile') }}</h1>
     @stop
     <livewire:profile-settings :user="$user"/>
 </x-layout>
