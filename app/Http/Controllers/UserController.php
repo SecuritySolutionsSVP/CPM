@@ -19,7 +19,9 @@ class UserController extends Controller
     }
 
     function profileView() {
-        return view('profile-settings');
+        return view('profile-settings', [
+            "user" => Auth::user(),
+        ]);
     }
 
     function userCredentialsView() {

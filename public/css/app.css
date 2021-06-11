@@ -305,6 +305,47 @@
   }
 }
 
+.user-settings {
+  position: fixed;
+  top: 30%;
+  left: 65%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: auto;
+  background-color: white;
+  z-index: 100;
+  padding: 25px;
+  overflow: auto;
+  max-height: 90%;
+}
+.user-settings label {
+  display: block;
+}
+.user-settings input {
+  border: 1px solid black;
+  display: block;
+}
+.user-settings__overlay {
+  background-color: black;
+  opacity: 0.3;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  z-index: 50;
+}
+@media (min-width: 1024px) {
+  .user-settings {
+    width: 600px;
+    min-height: 700px;
+    height: auto;
+    background-color: white;
+    z-index: 100;
+    padding: 50px;
+  }
+}
+
 .mobile-header {
   display: none;
   position: fixed;

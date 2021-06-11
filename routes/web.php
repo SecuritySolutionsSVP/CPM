@@ -50,6 +50,7 @@ Route::middleware(['auth'])->group(function() {
     
     //User
     Route::get('/users', [UserController::class, "userView"])->middleware('role:Administrator,Manager');
+    Route::get('/profile', [UserController::class, "profileView"])->whereNumber('id');
     Route::get('/user/{id}', [UserController::class, "profileView"])->whereNumber('id');
     Route::post('/user', [UserController::class, "create"]);
     Route::put('/user', [UserController::class, "update"]);
