@@ -11,6 +11,7 @@
                     {{ $user->fullName() }}
                 </div>
                 <div class="user-overview__list__item__icons">
+                    <a href="/user/{{$user->id}}/credentials"><i class="fas fa-lock group-overview__list__item__icons__get-users"></i></a>
                     <i class="fas fa-cogs user-overview__list__item__icons__open-settings"></i>
                 </div>
             </div>

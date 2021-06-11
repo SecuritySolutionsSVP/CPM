@@ -27,7 +27,7 @@
                 <i class="fas fa-times fa-2x cursor-pointer" wire:click="$set('addModal', false)"></i>
             </div>
             <div>
-                <h2> {{ trans('Group settings') }}</h2>
+                <h2> {{ trans('Group Credentials') }}</h2>
                 <div class="group-modal__name">
                     {{ Form::label('Credentials', trans('Credentials')) }}
                     <input type="text" class="searchbar" wire:model.debounce.500ms="addCredentialSearchString" placeholder="{{trans('Search')}}">
