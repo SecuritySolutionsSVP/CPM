@@ -7,16 +7,18 @@
         <div class="password-list__list">
             @foreach ($shownCredentials->sortBy('username') as $credential)
                 <div class="password-list__list__item clearfix">
-                    <div class="password-list__list__item__name" wire:click="displayCredentialAccessModal({{$credential->id}})">
+                    <div class="password-list__list__item__name" @if($this->userCanAccessCredential($credential->id)) wire:click="displayCredentialAccessModal({{$credential->id}})" @endif>
                         {{ $credential->username }} {{ trans('Passwords for') }} {{ $credential->credentialGroup->name }}
                     </div>
-                    <div class="password-list__list__item__created" wire:click="displayCredentialAccessModal({{$credential->id}})">
+                    <div class="password-list__list__item__created" @if($this->userCanAccessCredential($credential->id)) wire:click="displayCredentialAccessModal({{$credential->id}})" @endif>
                         {{ $credential->created_at->diffForHumans() }}
                     </div>
                     <div class="password-list__list__item__icons">
+                        @if ($this->userCanAccessCredential($credential->id))
                         <i class="fas fa-user password-list__list__item__icons__get-username" wire:click="displayCredentialAccessModal({{$credential->id}})"></i>
                         <i class="fas fa-key password-list__list__item__icons__get-password" wire:click="displayCredentialEditModal({{$credential->id}})"></i>
                         <i class="fas fa-trash password-list__list__item__icons__get-delete" wire:click="deleteCredential({{$credential->id}})" onclick="confirm('{{ trans('Are you sure you want to remove this credential?')}}') || event.stopImmediatePropagation()"></i>
+                        @endif
                     </div>
                 </div>
             @endforeach
@@ -49,15 +51,17 @@
                         <i class="fas fa-eye-slash" onclick="document.getElementById('showPassword').setAttribute('type', 'password');"></i>
                     </p>
                     @else
-                    <button wire:click="requestAccessToCredential()" 
-                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
-                        {{ trans('Fetch password') }}
-                    </button>
+                        <button wire:click="requestAccessToCredential()" 
+                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
+                            {{ trans('Fetch password') }}
+                        </button>
+                        @if ($error)
+                        <p class="text-color-red">
+                            {{ trans('You do not have access to this password') }}
+                        </p>
+                        @endif
                     @endif
-                    @if($error)
-                    <p>{{ trans('Something went wrong') }}</p>
-                    @endif
-                </div>
+                    </div>
                 <div class="password-modal__accesslog">
                     @foreach ($selectedCredential->credentialAccessLogs
                             ->where('created_at', '>=', $selectedCredential->password_last_updated_at)

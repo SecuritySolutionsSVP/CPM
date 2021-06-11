@@ -3,19 +3,20 @@
 namespace App\Mail;
 
 use App\Models\TwoFactorCredentialToken;
+use App\Models\TwoFactorUserToken;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class TwoFactorMail extends Mailable
+class TwoFactorUserMail extends Mailable
 {
     use Queueable, SerializesModels;
 
     /**
      * The token instance.
      * 
-     * @var \App\Models\TwoFactorCredentialToken
+     * @var \App\Models\TwoFactorUserToken
      */
     protected $token;
 
@@ -24,7 +25,7 @@ class TwoFactorMail extends Mailable
      *
      * @return void
      */
-    public function __construct(TwoFactorCredentialToken $token)
+    public function __construct(TwoFactorUserToken $token)
     {
         $this->token = $token;
     }
@@ -36,11 +37,11 @@ class TwoFactorMail extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.two_factor_mail')
+        return $this->view('mail.two_factor_user_mail')
                     ->with([
-                        'token' => $this->token->name,
+                        'token' => $this->token->token,
                         'expiration' => $this->token->expiration,
-                        'credential' => $this->token->credential
+                        'user' => $this->token->user
                     ]);
     }
 }
