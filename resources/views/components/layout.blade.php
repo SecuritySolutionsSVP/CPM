@@ -49,6 +49,9 @@
             </div>
     </div>
     <div class="md:container md:mx-auto">
+        <div>
+            @yield('header')
+        </div>
         {{ $slot }}
     </div>
 
