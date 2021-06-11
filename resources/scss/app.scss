@@ -3,9 +3,25 @@
 @import "modules/header.scss";
 @import "modules/password-list.scss";
 @import "modules/password-modal.scss";
+@import "modules/group-overview.scss";
+@import "modules/user-overview.scss";
+@import "modules/group-modal.scss";
+@import "modules/user-modal.scss";
+@import "modules/user-settings.scss";
+@import "modules/mobile-header.scss";
 
+.searchbar{
+    border: 1px solid black;
+}
 .clearfix::after {
     content: "";
     clear: both;
     display: table;
+}
+
+h1{
+    font-size: 30px;
+    font-weight: bold;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }

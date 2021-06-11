@@ -1,1 +1,379 @@
-.login{position:relative}.login .logo{height:200px;margin:0 auto}.login__form{position:absolute;width:100%;display:inline-block;padding:100px;background-color:#90a8ee;text-align:center}.login__form label{margin:0 auto;width:50%;display:block;color:#fff}.login__form input{width:300px;display:block;margin:0 auto 10px;max-width:100%}.login__remember-me input,.login__remember-me label{display:inline;width:auto}.header{background-color:#90a8ee;height:100px;width:100%}.header .logo{display:inline-block;height:100%}.header__navigation{display:inline-block;float:right;text-align:right;height:100px}.header__navigation__item{display:inline-block;height:100%}.header__navigation__item a{line-height:100px;height:100%;display:block;padding-left:20px;padding-right:20px}.header__navigation__item:hover{background-color:#4169e1;color:#fff}.password-list{padding-top:10px}.password-list__list{border-left:1px solid #000;border-right:1px solid #000;border-top:1px solid #000}.password-list__list__item{padding:5px;border-bottom:1px solid #000}.password-list__list__item__name{width:60%;display:inline-block;float:left}.password-list__list__item__icons{float:left;width:20%;display:inline-block;text-align:right}.password-list__list__item__icons__get-username{color:green}.password-list__list__item__icons__get-password{color:red}.password-list__list__item__icons__open-settings{color:purple}.password-list__list__item__created{text-align:right;float:left;width:20%;display:inline-block}.password-list__list__item__created a{color:#00f}.password-list__list__item__created a:hover{text-decoration:underline}.password-modal{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;min-height:700px;height:auto;background-color:#fff;z-index:100;padding:50px}.password-modal__credentials{padding-top:25px;padding-bottom:25px}.password-modal__accesslog{padding-top:25px;border-top:1px solid #000;padding-bottom:20px}.password-modal__accesslog__button{margin-top:5px}.password-modal input{border:1px solid #000}.password-modal__overlay{background-color:#000;opacity:.3;position:fixed;width:100%;height:100%;top:0;left:0;z-index:50}.clearfix:after{content:"";clear:both;display:table}
+.login {
+  position: relative;
+}
+.login .logo {
+  height: 200px;
+  margin: 0 auto;
+}
+.login__form {
+  position: absolute;
+  width: 100%;
+  display: inline-block;
+  padding: 100px;
+  background-color: #90A8EE;
+  text-align: center;
+}
+.login__form label {
+  margin: 0 auto;
+  width: 50%;
+  display: block;
+  color: white;
+}
+.login__form input {
+  margin: 0 auto;
+  width: 300px;
+  display: block;
+  margin-bottom: 10px;
+  max-width: 100%;
+}
+.login__remember-me label {
+  display: inline;
+  width: auto;
+}
+.login__remember-me input {
+  display: inline;
+  width: auto;
+}
+
+.header {
+  background-color: #90a8ee;
+  height: 100px;
+  width: 100%;
+}
+.header__show-mobile {
+  line-height: 100px;
+  padding-right: 10px;
+}
+.header .logo {
+  display: inline-block;
+  height: 100%;
+}
+.header__navigation {
+  float: right;
+  text-align: right;
+  height: 100px;
+}
+.header__navigation__item {
+  display: inline-block;
+  height: 100%;
+}
+.header__navigation__item a {
+  line-height: 100px;
+  height: 100%;
+  display: block;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.header__navigation__item:hover {
+  background-color: royalblue;
+  color: white;
+}
+
+.password-list {
+  padding-top: 10px;
+}
+.password-list__list {
+  border-left: solid black 1px;
+  border-right: solid black 1px;
+  border-top: solid black 1px;
+}
+.password-list__list__item {
+  padding: 5px;
+  border-bottom: 1px solid black;
+}
+.password-list__list__item__name {
+  width: 60%;
+  display: inline-block;
+  float: left;
+}
+.password-list__list__item__icons {
+  float: left;
+  width: 20%;
+  display: inline-block;
+  text-align: right;
+}
+.password-list__list__item__icons__get-username {
+  color: green;
+}
+.password-list__list__item__icons__get-password {
+  color: red;
+}
+.password-list__list__item__icons__open-settings {
+  color: purple;
+}
+.password-list__list__item__created {
+  text-align: right;
+  float: left;
+  width: 20%;
+  display: inline-block;
+}
+.password-list__list__item__created a {
+  color: blue;
+}
+.password-list__list__item__created a:hover {
+  text-decoration: underline;
+}
+
+.password-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: auto;
+  background-color: white;
+  z-index: 100;
+  padding: 25px;
+  overflow: auto;
+  max-height: 90%;
+}
+.password-modal__credentials {
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+.password-modal__accesslog {
+  padding-top: 25px;
+  border-top: 1px solid black;
+  padding-bottom: 20px;
+}
+.password-modal__accesslog__button {
+  margin-top: 5px;
+}
+.password-modal input {
+  border: 1px solid black;
+}
+.password-modal__overlay {
+  background-color: black;
+  opacity: 0.3;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  z-index: 50;
+}
+@media (min-width: 1024px) {
+  .password-modal {
+    width: 600px;
+    min-height: 700px;
+    height: auto;
+    background-color: white;
+    z-index: 100;
+    padding: 50px;
+  }
+}
+
+.group-overview {
+  padding-top: 10px;
+}
+.group-overview__list {
+  border-left: solid black 1px;
+  border-right: solid black 1px;
+  border-top: solid black 1px;
+}
+.group-overview__list__item {
+  padding: 5px;
+  border-bottom: 1px solid black;
+}
+.group-overview__list__item__name {
+  width: 80%;
+  display: inline-block;
+  float: left;
+}
+.group-overview__list__item__icons {
+  float: left;
+  width: 20%;
+  display: inline-block;
+  text-align: right;
+}
+.group-overview__list__item__icons__get-users {
+  color: green;
+}
+.group-overview__list__item__icons__get-delete {
+  color: red;
+}
+.group-overview__list__item__icons__open-settings {
+  color: purple;
+}
+
+.user-overview {
+  padding-top: 10px;
+}
+.user-overview__list {
+  border-left: solid black 1px;
+  border-right: solid black 1px;
+  border-top: solid black 1px;
+}
+.user-overview__list__item {
+  padding: 5px;
+  border-bottom: 1px solid black;
+}
+.user-overview__list__item__name {
+  width: 80%;
+  display: inline-block;
+  float: left;
+}
+.user-overview__list__item__icons {
+  float: left;
+  width: 20%;
+  display: inline-block;
+  text-align: right;
+}
+.user-overview__list__item__icons__open-settings {
+  color: purple;
+}
+
+.group-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: auto;
+  background-color: white;
+  z-index: 100;
+  padding: 25px;
+  overflow: auto;
+  max-height: 90%;
+}
+.group-modal input {
+  border: 1px solid black;
+}
+.group-modal__overlay {
+  background-color: black;
+  opacity: 0.3;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  z-index: 50;
+}
+.group-modal__name {
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+@media (min-width: 1024px) {
+  .group-modal {
+    width: 600px;
+    min-height: 700px;
+    height: auto;
+    background-color: white;
+    z-index: 100;
+    padding: 50px;
+  }
+}
+
+.user-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: auto;
+  background-color: white;
+  z-index: 100;
+  padding: 25px;
+  overflow: auto;
+  max-height: 90%;
+}
+.user-modal label {
+  display: block;
+}
+.user-modal input {
+  border: 1px solid black;
+  display: block;
+}
+.user-modal__overlay {
+  background-color: black;
+  opacity: 0.3;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  z-index: 50;
+}
+@media (min-width: 1024px) {
+  .user-modal {
+    width: 600px;
+    min-height: 700px;
+    height: auto;
+    background-color: white;
+    z-index: 100;
+    padding: 50px;
+  }
+}
+
+.user-settings {
+  position: fixed;
+  top: 500px;
+  left: 60%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: auto;
+  background-color: white;
+  z-index: 100;
+  padding: 25px;
+  overflow: auto;
+  max-height: 90%;
+}
+.user-settings label {
+  display: block;
+}
+.user-settings input {
+  border: 1px solid black;
+  display: block;
+}
+.user-settings__overlay {
+  background-color: black;
+  opacity: 0.3;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  z-index: 50;
+}
+@media (min-width: 1024px) {
+  .user-settings {
+    width: 600px;
+    min-height: 700px;
+    height: auto;
+    background-color: white;
+    z-index: 100;
+    padding: 50px;
+  }
+}
+
+.mobile-header {
+  display: none;
+  position: fixed;
+  height: 100vh;
+  right: 0;
+  top: 0;
+  background-color: #90a8ee;
+}
+.mobile-header__navigation {
+  padding: 0 100px;
+}
+.mobile-header__navigation__item {
+  padding-top: 10px;
+}
+
+.searchbar {
+  border: 1px solid black;
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+h1 {
+  font-size: 30px;
+  font-weight: bold;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}

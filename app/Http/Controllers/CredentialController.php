@@ -12,15 +12,38 @@ use Illuminate\Support\Facades\Auth;
 class CredentialController extends Controller
 {
     function notificationCredentialsView() {
+        $credentials = Auth::user()->getAllCredentialPrivileges();
+        $credentials->searchable();
         return view('dashboard', [
-            'credentials' => Auth::user()->getAllCredentialPrivileges(),
+            'credentials' => $credentials,
         ]);
     }
 
     function allCredentialsView() {
+        $credentials = Credential::all();
+        $credentials->searchable();
         return view('passwords-view', [
-            'credentials' => Credential::all(),
+            'credentials' => $credentials,
         ]);
+    }
+
+    /** 
+     * Get Group Users
+     * 
+     * @return Credential 
+     */ 
+    public static function getCredentialsInfo(Request $request) {
+        $validator = Validator::make($request->all(), 
+        [ 
+            'id' => 'required',
+        ]);
+
+        $input = $request->only('id');
+        foreach ($input as $key => $value) {
+            $credentials = Credential::find($value);
+        }
+
+        return $credentials;
     }
 
     /** 

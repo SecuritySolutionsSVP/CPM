@@ -12,11 +12,11 @@ class Group extends Model
 
     // creates prop "$groupCredentialPrivileges" that accesses list of credentials via group_credential_privileges table
     public function credentialPrivileges() {
-        return $this->belongsToMany(Credential::class, 'group_credential_privileges');
+        return $this->belongsToMany(Credential::class, 'group_credential_privileges')->withTimestamps();
     }
     // creates prop "$users" that accesses list of users via user_group table
     public function users() {
-        return $this->belongsToMany(User::class, 'user_group');
+        return $this->belongsToMany(User::class, 'user_group')->withTimestamps();
     }
 
     /**

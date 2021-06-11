@@ -1,6 +1,9 @@
 <x-layout>
     @section('title')
-        Passwords
+        {{ trans('Credentials') }}
+    @stop
+    @section('header')
+        <h1 class="text-center">{{ trans('All') }} {{ trans('Credentials') }}</h1>
     @stop
 
     <livewire:password-overview :credentials="$credentials"/>

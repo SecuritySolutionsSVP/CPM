@@ -6,15 +6,136 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Credential;
 
 class UserController extends Controller
 {
     function userView() {
-        return view('user-view');
+        $users = User::all();
+        $users->searchable();
+        return view('user-view', [
+            "users" => $users,
+        ]);
     }
 
     function profileView() {
-        return view('profile-settings');
+        return view('profile-settings', [
+            "user" => Auth::user(),
+        ]);
+    }
+
+    function userCredentialsView() {
+        $request = new Request();
+        $request->replace(['user_id' => request('id')]);
+        $credentials = UserController::getUserCredentials($request);
+        $request->replace(['id' =>  $credentials]);
+        return view('user-credentials-overview', [
+            "credentials" => CredentialController::getCredentialsInfo($request),
+            "userID" => request('id')
+        ]);
+    }
+
+    /** 
+     * Get Group Credential
+     * 
+     * @return User 
+     */ 
+    public static function getUserCredentials(Request $request) {
+        $validator = Validator::make($request->all(), 
+        [ 
+            'user_id' => 'required',
+        ]);
+
+        $input = $request->only('user_id');
+        $user = User::find($input['user_id']);
+
+        $credentials = [];
+        foreach ($user->personalCredentialPrivileges as $credential) {
+            $credentials[] = $credential->pivot->credential_id;
+        }
+
+        return $credentials;
+    }
+
+    /** 
+     * Add Credential to Group 
+     * 
+     * @return \Illuminate\Http\Response 
+     */ 
+    public static function addCredentialToUser(Request $request) {
+        $validator = Validator::make($request->all(), 
+        [ 
+            'credential_id' => 'required',
+            'user_id' => 'required',
+        ]);
+
+        $input = $request->only('credential_id', 'user_id');
+
+        $credential = Credential::find($input['credential_id']);
+        $user = User::find($input['user_id']);
+        
+        $credential->privilegedUsers()->attach($user);
+    }
+
+    /** 
+     * Remove Credential from Group 
+     * 
+     * @return \Illuminate\Http\Response 
+     */ 
+    public static function removeCredentialFromUser(Request $request) {
+        $validator = Validator::make($request->all(), 
+        [ 
+            'credential_id' => 'required',
+            'user_id' => 'required',
+        ]);
+
+        $input = $request->only('credential_id', 'user_id');
+
+        $credential = Credential::find($input['credential_id']);
+        $user = User::find($input['user_id']);
+        
+        $credential->privilegedUsers()->detach($user);
+    }
+
+    /** 
+     * Get Group Credential
+     * 
+     * @return Credential 
+     */ 
+    public static function getNoneUserCredentials(Request $request) {
+        $validator = Validator::make($request->all(), 
+        [ 
+            'user_id' => 'required',
+        ]);
+
+        $input = $request->only('user_id');
+
+        $request = new Request();
+        $request->replace(['user_id' => $input['user_id']]);
+        $credentials = UserController::getUserCredentials($request);
+
+        $noneCredentials = Credential::all()->whereNotIn('id', $credentials);
+
+        return $noneCredentials;
+    }
+
+    /** 
+     * Get Group Users
+     * 
+     * @return User 
+     */ 
+    public static function getUsersInfo(Request $request) {
+        $validator = Validator::make($request->all(), 
+        [ 
+            'id' => 'required',
+        ]);
+
+        $input = $request->only('id');
+        foreach ($input as $key => $value) {
+            $users = User::find($value);
+        }
+
+        return $users;
     }
 
     /** 
@@ -31,7 +152,7 @@ class UserController extends Controller
             'role_id' => 'required',
             'email' => 'required|email|unique:users,email', 
             'password' => 'required', 
-            'c_password' => 'required|same:password', 
+            'c_password' => 'required|same:password',
         ]);
 
         $input = $request->all();

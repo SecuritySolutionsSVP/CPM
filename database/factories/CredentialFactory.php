@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Credential;
 use App\Models\CredentialGroup;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CredentialFactory extends Factory
@@ -25,8 +26,9 @@ class CredentialFactory extends Factory
         return [
             'credential_group_id' => CredentialGroup::factory(),
             'username' => $this->faker->userName,
-            'password' => bcrypt($this->faker->password()),
-            'is_sensitive' => $this->faker->boolean(20)
+            'password' => $this->faker->password(),
+            'is_sensitive' => $this->faker->boolean(20),
+            'password_last_updated_at' => Carbon::now()
         ];
     }
 }

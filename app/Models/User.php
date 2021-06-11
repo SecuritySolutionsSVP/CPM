@@ -5,13 +5,14 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Scout\Searchable;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable, Searchable;
+    use HasFactory, Notifiable, Searchable, SoftDeletes;
 
     // gets the role of the current user by exposing prop "$role"
     public function role() {
@@ -30,12 +31,12 @@ class User extends Authenticatable
 
     // creates prop "$groups" that accesses list of groups via user_group table
     public function groups() {
-        return $this->belongsToMany(Group::class, 'user_group');
+        return $this->belongsToMany(Group::class, 'user_group')->withTimestamps();
     }
 
     // creates prop "$personalCredentialPrivileges" that accesses list of credentials via user_credential_privileges table
     public function personalCredentialPrivileges() {
-        return $this->belongsToMany(Credential::class, 'user_credential_privileges');
+        return $this->belongsToMany(Credential::class, 'user_credential_privileges')->withTimestamps();
     }
 
     public function getGroupCredentialPrivileges() {
@@ -58,6 +59,16 @@ class User extends Authenticatable
     }
 
     /**
+     * Get the indexable data array for the model.
+     *
+     * @return array
+     */
+    public function toSearchableArray()
+    {
+        return $this->load(['role', 'groups'])->toArray();
+    }
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
@@ -68,6 +79,8 @@ class User extends Authenticatable
         'email',
         'role_id',
         'password',
+        'locale',
+        'timezone',
     ];
 
     /**
@@ -88,5 +101,11 @@ class User extends Authenticatable
     protected $casts = [
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
+        'deleted_at' => 'datetime'
+    ];
+    protected $dates = [
+        'created_at', 
+        'updated_at', 
+        'deleted_at'
     ];
 }

@@ -2,31 +2,49 @@
 
 namespace App\Models;
 
+use betterapp\LaravelDbEncrypter\Traits\EncryptableDbAttribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Scout\Searchable;
 
 class Credential extends Model
 {
-    use HasFactory, Searchable;
+    use HasFactory, Searchable, EncryptableDbAttribute, SoftDeletes;
 
     public function credentialGroup() {
         return $this->belongsTo(CredentialGroup::class);
     }
 
     public function privilegedGroups() {
-        return $this->belongsToMany(Group::class, 'group_credential_privileges');
+        return $this->belongsToMany(Group::class, 'group_credential_privileges')->withTimestamps();
     }
 
     public function privilegedUsers() {
-        return $this->belongsToMany(User::class, 'user_credential_privileges');
+        return $this->belongsToMany(User::class, 'user_credential_privileges')->withTimestamps();
     }
 
     public function credentialAccessLogs() {
         return $this->hasMany(UserCredentialAccessLog::class);
     }
 
-
+     /** 
+      * The attributes that should be encrypted/decrypted
+      *
+      * @var array
+      */
+    protected $encryptable = [
+        'password',
+    ];
+    /**
+     * Get the indexable data array for the model.
+     *
+     * @return array
+     */
+    public function toSearchableArray()
+    {
+        return $this->load('credentialGroup')->toArray();
+    }
     /**
      * The attributes that should be hidden for arrays.
      *
