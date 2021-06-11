@@ -2,8 +2,10 @@
 
 namespace App\Http\Livewire;
 
+use App\Mail\UserPasswordReset;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Livewire\Component;
 
@@ -41,21 +43,25 @@ class UserOverview extends Component
 
     public function createUser($formData)
     {
-        $password = Hash::make(Str::random(8));
+        $password = Str::random(8);
         $request = [
             'first_name' => $formData['first_name'],
             'last_name' => $formData['last_name'],
             'role_id' => $formData['role_id'],
             'email' => $formData['email'],
-            'password' => $password,
-            'c_password' => $password,
+            'password' => Hash::make($password),
             'locale' => $formData['locale']
         ];
-        $user = new User();
-        $user->create($request);
+        $user = User::create($request);
+        Mail::to($user)->send(new UserPasswordReset($user, $password));
         return redirect('/users');
     }
-
+    public function resetPassword() {
+        $user = $this->selectedUser;
+        $newPass = Str::random(8);
+        $user->password = Hash::make($newPass);
+        Mail::to($user)->send(new UserPasswordReset($user, $newPass));
+    }
     public function editUser($formData)
     {
         $request = [

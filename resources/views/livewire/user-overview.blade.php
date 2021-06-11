@@ -58,7 +58,7 @@
                         selected
                     @endif>{{ trans('User') }}</option>
                 </select>
-                <a href="#" class="block text-blue-500 hover:underline">{{ trans('Reset Password') }}</a>
+                <a class="block text-blue-500 hover:underline" wire:click="resetPassword()">{{ trans('Reset Password') }}</a>
                 <br>
                 <div class="mt-3 inline block bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded cursor-pointer" wire:click="deleteUser({{$selectedUser->id}})">{{ trans('Delete User') }}</div>
                 <button class="mt-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">{{ trans('Save User') }}</button>
