@@ -40,5 +40,14 @@
     "Role": "Rolle",
     "User": "Bruger",
     "Manager": "Manager",
-    "Admin": "Administrator"
+    "Admin": "Administrator",
+    "Fetch password": "Hent adgangskode",
+    "Are you sure you want to remove this credential?": "Er du sikker på at du ønsker at fjerne denne adgangskode?",
+    "Are you sure you want to remove this group?": "Er du sikker på at du ønsker at fjerne denne adgangskode?",
+    "Are you sure you want to remove this user?": "Er du sikker på at du ønsker at fjerne denne bruger?",
+    "Mark as sensitive": "Marker som følsomt",
+    "New asset": "Nyt system",
+    "Existing asset": "Eksisterende system",
+    "Select existing asset": "Vælg eksisterende system",
+    "Create new credential": "Opret ny adgangskode"
 }

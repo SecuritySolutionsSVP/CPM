@@ -36,5 +36,18 @@
     "All": "All",
     "My": "My",
     "Credentials": "Credentials",
-    "Danish": "Danish"
+    "Danish": "Danish",
+    "Role": "Role",
+    "User": "User",
+    "Manager": "Manager",
+    "Admin": "Admin",
+    "Fetch password": "Fetch password",
+    "Are you sure you want to remove this credential?": "Are you sure you want to remove this credential?",
+    "Are you sure you want to remove this group?": "Are you sure you want to remove this group?",
+    "Are you sure you want to remove this user?": "Are you sure you want to remove this user?",
+    "Mark as sensitive": "Mark as sensitive",
+    "New asset": "New asset",
+    "Existing asset": "Existing asset",
+    "Select existing asset": "Select existing asset",
+    "Create new credential": "Create new credential"
 }

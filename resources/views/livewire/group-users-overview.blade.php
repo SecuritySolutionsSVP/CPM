@@ -15,7 +15,7 @@
                     {{ $user->email }}
                 </div>
                 <div class="group-overview__list__item__icons">
-                    <i class="fas fa-user-times group-overview__list__item__icons__get-delete" wire:click="removeUser({{$user->id}})" onclick="confirm('Are you sure you want to remove this User?') || event.stopImmediatePropagation()"></i>
+                    <i class="fas fa-user-times group-overview__list__item__icons__get-delete" wire:click="removeUser({{$user->id}})" onclick="confirm('{{ trans('Are you sure you want to remove this user?') }}') || event.stopImmediatePropagation()"></i>
                 </div>
             </div>
             @endforeach

@@ -15,7 +15,7 @@
                     {{ $credential->username }} {{ trans('Passwords for') }} {{ $credential->credentialGroup->name }}
                 </div>
                 <div class="group-overview__list__item__icons">
-                    <i class="fas fa-key group-overview__list__item__icons__get-delete" wire:click="removeCredential({{$credential->id}})" onclick="confirm('Are you sure you want to remove this Credential?') || event.stopImmediatePropagation()"></i>
+                    <i class="fas fa-key group-overview__list__item__icons__get-delete" wire:click="removeCredential({{$credential->id}})" onclick="confirm('{{ trans('Are you sure you want to remove this credential?') }}' || event.stopImmediatePropagation()"></i>
                 </div>
             </div>
             @endforeach
