@@ -26,7 +26,6 @@
             @if ($selectedUser)
             <form wire:submit.prevent="editUser(Object.fromEntries(new FormData($event.target)))">
                 <input name="id" type="hidden" value="{{$selectedUser->id}}">
-                <input name="role_id" type="hidden" value="{{$selectedUser->role_id}}">
                 <label for="first_name">{{ trans('First name') }}</label>
                 <input name="first_name" type="text" value="{{$selectedUser->first_name}}">
                 <label for="last_name">{{ trans('Last name') }}</label>
@@ -44,6 +43,18 @@
                     <option value="da" @if ($selectedUser->locale == "da")
                         selected='selected'
                     @endif>{{ trans('Danish') }}</option>
+                </select><br>
+                <label for="role_id">{{ trans('Role') }}</label>
+                <select name="role_id">
+                    <option value="1" @if ($selectedUser->role_id == 1)
+                        selected      
+                    @endif>{{ trans('Admin') }}</option>
+                    <option value="2" @if ($selectedUser->role_id == 2)
+                        selected
+                    @endif>{{ trans('Manager') }}</option>
+                    <option value="3" @if ($selectedUser->role_id == 3)
+                        selected
+                    @endif>{{ trans('User') }}</option>
                 </select>
                 <a href="#" class="block text-blue-500 hover:underline">{{ trans('Reset Password') }}</a>
                 <br>
@@ -65,6 +76,12 @@
                         <option value="null" selected='selected'>{{ trans('Choose Language') }}</option>
                         <option value="en">{{ trans('English') }}</option>
                         <option value="da">{{ trans('Danish') }}</option>
+                    </select><br>
+                    <label for="role_id">{{ trans('Role') }}</label>
+                    <select name="role_id">
+                        <option value="1">{{ trans('Admin') }}</option>
+                        <option value="2">{{ trans('Manager') }}</option>
+                        <option value="3">{{ trans('User') }}</option>
                     </select>
                     <br>
                     <button class="mt-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">{{ trans('Save User') }}</button>
