@@ -1,29 +1,89 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="/css/app.css" rel="stylesheet">
-    <title>CPM - @yield('title')</title>
+    <livewire:styles />
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
+    <script src="/js/app.js"></script>
+    <title>{{ env('APP_NAME', 'CPM') }} - @yield('title')</title>
 </head>
 
 <body>
     <div class="header">
         <div class="md:container md:mx-auto">
-            <a href="/"><img class="logo" src="/images/logo-25.svg"></a>
-            <div class="header__navigation">
-                <div class="header__navigation__item"><a href="/">Dashboard</a></div>
-                <div class="header__navigation__item"><a href="/login">Login</a></div>
+            <a href="/"><img class="logo" src="{{ env('BRANDING_IMAGE_PATH', '')}}"></a>
+            <div class="header__navigation hidden md:inline-block">
+                <div class="header__navigation__item"><a href="/">{{ trans('Dashboard') }}</a></div>
+                @if(Auth::check() && Auth::user()->role->priviledge_level <= 2)
+                <div class="header__navigation__item"><a href="/users">{{ trans('Users') }}</a></div>
+                @endif
+                <div class="header__navigation__item"><a href="/credentials">{{ trans('Credentials') }}</a></div>
+                <div class="header__navigation__item"><a href="/groups">{{ trans('Groups') }}</a></div>
+                <div class="header__navigation__item"><a href="/profile">{{ trans('Profile') }}</a></div>
+                @if(Auth::check())
+                <div class="header__navigation__item"><a href="/logout">{{ trans('Logout') }}</a></div>
+                @else
+                    <div class="header__navigation__item"><a href="/login">{{ trans('Login') }}</a></div>
+                @endif
+            </div>
+            <div class="inline-block md:hidden float-right">
+                <i class="header__show-mobile fas fa-bars fa-2x hidden" onclick="showMobileHeader()"></i>
             </div>
         </div>
     </div>
+    <div class="mobile-header" id="js-mobile-header">
+        <div class="text-right p-5">
+            <i class="fas fa-times fa-2x cursor-pointer" onclick="showMobileHeader()" wire:click="$set('showModal', false)"></i>
+        </div>   
+            <div class="mobile-header__navigation">
+                <div class="mobile-header__navigation__item"><a href="/">{{ trans('Dashboard') }}</a></div>
+                @if(Auth::check() && Auth::user()->role->priviledge_level <= 2)
+                <div class="mobile-header__navigation__item"><a href="/users">{{ trans('Users') }}</a></div>
+                @endif
+                <div class="mobile-header__navigation__item"><a href="/credentials">{{ trans('Credentials') }}</a></div>
+                <div class="mobile-header__navigation__item"><a href="/groups">{{ trans('Groups') }}</a></div>
+                <div class="mobile-header__navigation__item"><a href="/profile">{{ trans('Profile') }}</a></div>
+                @if(Auth::check())
+                <div class="mobile-header__navigation__item"><a href="/logout">{{ trans('Logout') }}</a></div>
+                @else
+                    <div class="mobile-header__navigation__item"><a href="/login">{{ trans('Login') }}</a></div>
+                @endif
+            </div>
+    </div>
     <div class="md:container md:mx-auto">
+        <div>
+            @yield('header')
+        </div>
         {{ $slot }}
     </div>
+
+    <livewire:scripts />
+    <script>
+    function showMobileHeader() {
+        var x = document.getElementById("js-mobile-header");
+        if (x.style.display === "none") {
+          x.style.display = "block";
+        } else {
+          x.style.display = "none";
+        }
+    }
+    window.addEventListener("resize", closeMobileMenuOnResize);
+
+    function closeMobileMenuOnResize(){
+        var x = document.getElementById("js-mobile-header");
+        if(x.style.display ==="block"){
+            x.style.display = 'none';
+        }
+    }
+    </script>
 </body>
 
 </html>

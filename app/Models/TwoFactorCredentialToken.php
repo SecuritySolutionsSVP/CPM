@@ -19,13 +19,33 @@ class TwoFactorCredentialToken extends Model
      * @param int $codeLength
      * @return string
      */
-    public function generateCode($codeLength = 4)
+    public static function generateCode($codeLength = 4)
     {
         // Code snippet from https://www.sitepoint.com/secure-laravel-apps-2fa-via-sms/
-        $min = pow(10, $codeLength);
+        $min = pow(10, $codeLength - 1);
         $max = $min * 10 - 1;
         $code = mt_rand($min, $max);
 
         return $code;
     }
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'token',
+    ];
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'credential_id',
+        'token',
+        'expiration'
+    ];
 }

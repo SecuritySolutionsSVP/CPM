@@ -16,7 +16,7 @@ class CreateUserCredentialAccessLogTable extends Migration
         Schema::create('user_credential_access_log', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('user_credential_access_log')->constrained('credentials');
+            $table->foreignId('credential_id')->constrained('credentials');
             $table->timestampsTz();
         });
     }

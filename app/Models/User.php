@@ -5,13 +5,14 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Scout\Searchable;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable, Searchable;
+    use HasFactory, Notifiable, Searchable, SoftDeletes;
 
     // gets the role of the current user by exposing prop "$role"
     public function role() {
@@ -25,41 +26,46 @@ class User extends Authenticatable
 
     // creates prop "$credentialAccessLog" that accesses list of credentials via user_credential_access_log table
     public function credentialAccessLogs() {
-        return $this->hasMany(UserCredentialAccessLog::class, 'user_credential_access_log');
+        return $this->hasMany(UserCredentialAccessLog::class);
     }
 
-    // public function credentialsAccessed() {
-    //     return $this->belongsToMany(Credential::class, "user_credential_access_log");
-    // }
+    // creates prop "$groups" that accesses list of groups via user_group table
+    public function groups() {
+        return $this->belongsToMany(Group::class, 'user_group')->withTimestamps();
+    }
 
     // creates prop "$personalCredentialPrivileges" that accesses list of credentials via user_credential_privileges table
     public function personalCredentialPrivileges() {
-        return $this->belongsToMany(Credential::class, 'user_credential_privileges');
-    }
-    // creates prop "$groups" that accesses list of groups via user_group table
-    public function groups() {
-        return $this->belongsToMany(Group::class, 'user_group');
+        return $this->belongsToMany(Credential::class, 'user_credential_privileges')->withTimestamps();
     }
 
     public function getGroupCredentialPrivileges() {
-        // $credentials = new Collection();
-        // $this->groups->each(function ($group, $key) use ($credentials) {
-        //     $credentials->merge($group->credentialPrivileges);
-        // });
-        // return $credentials;
-
-        return $this->groups
+        return new Collection($this->groups
             ->map(function ($group) {
                 return $group->credentialPrivileges;
             })
             ->flatten(1)
-            ->unique('id');
+            ->unique('id'));
     }
 
     public function getAllCredentialPrivileges() {
-        return $this->getGroupCredentialPrivileges()
-            ->merge($this->personalCredentialPrivileges)
+        return $this->personalCredentialPrivileges
+            ->merge($this->getGroupCredentialPrivileges())
             ->unique('id');
+    }
+
+    public function fullName() {
+        return "$this->first_name $this->last_name";
+    }
+
+    /**
+     * Get the indexable data array for the model.
+     *
+     * @return array
+     */
+    public function toSearchableArray()
+    {
+        return $this->load(['role', 'groups'])->toArray();
     }
 
     /**
@@ -68,9 +74,13 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
         'email',
+        'role_id',
         'password',
+        'locale',
+        'timezone',
     ];
 
     /**
@@ -91,5 +101,11 @@ class User extends Authenticatable
     protected $casts = [
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
+        'deleted_at' => 'datetime'
+    ];
+    protected $dates = [
+        'created_at', 
+        'updated_at', 
+        'deleted_at'
     ];
 }

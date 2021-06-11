@@ -1,0 +1,35 @@
+.group-overview{
+    padding-top: 10px;
+    &__list {
+        border-left: solid black 1px;
+        border-right: solid black 1px;
+        border-top: solid black 1px;
+        &__item {
+            padding: 5px;
+            border-bottom: 1px solid black;
+            &__name{
+                width: 80%;
+                display: inline-block;
+                float: left;
+            }
+            &__icons{
+                float: left;
+                width: 20%;
+                display: inline-block;
+                text-align: right;
+
+                &__get-users{
+                    color: green;
+                }
+
+                &__get-delete{
+                    color: red;
+                }
+
+                &__open-settings{
+                    color: purple
+                }
+            }
+        }
+    }
+}

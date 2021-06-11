@@ -1,0 +1,41 @@
+.group-modal{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    height: auto;
+    background-color: white;
+    z-index: 100;
+    padding: 25px;
+    overflow: auto;
+    max-height: 90%;
+
+    input {
+        border: 1px solid black;
+    }
+    &__overlay {
+        background-color: black;
+        opacity: 0.3;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0px;
+        left: 0px;
+        z-index: 50;
+    }
+    &__name {
+        padding-top: 25px;
+        padding-bottom: 25px;
+    }
+
+    @media (min-width: 1024px) {
+        width: 600px;
+        min-height: 700px;
+        height: auto;
+        background-color: white;
+        z-index: 100;
+        padding: 50px;
+        
+    }
+}
