@@ -33,5 +33,7 @@
     "Add user" : "Add user",
     "Create new Password" : "Create new Password",
     "Search":"Search",
-    "All": "All"
+    "All": "All",
+    "My": "My",
+    "Credentials": "Credentials"
 }
