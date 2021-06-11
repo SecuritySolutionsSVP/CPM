@@ -1,7 +1,7 @@
 <div>
     <div class="password-list">
         <p>
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded mb-3" wire:click="displayCredentialCreateModal()">{{ trans('Create new Password') }}</button>
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded mb-3" wire:click="displayCredentialCreateModal()">{{ trans('Create new Credential') }}</button>
             <input type="text" class="searchbar" wire:model.debounce.500ms="searchString" placeholder="{{trans('Search')}}">
         </p> 
         <div class="password-list__list">
