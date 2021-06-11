@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Livewire\Component;
+use Illuminate\Support\Facades\Auth;
 
 class ProfileSettings extends Component
 {
@@ -25,7 +26,15 @@ class ProfileSettings extends Component
             'email' => $formData['email'],
             'locale' => $formData['locale'],
         ];
+
+        $credentials['email'] = $formData['email'];
+        $credentials['password'] = $formData['current_password'];
+
         $user = $this->user;
+        if (!empty($formData['password']) && Auth::attempt($credentials,false,false) && $formData['password'] == $formData['c_password']) {
+            $user->password = bcrypt($formData['password']);
+        }
+
         $user->update($request);
         return redirect('/profile');
     }
