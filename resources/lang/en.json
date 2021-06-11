@@ -15,5 +15,22 @@
     "Save": "Save",
     "Cancel": "Cancel",
     "Copy": "Copy",
-    "Show password": "Show password"
+    "Show password": "Show password",
+    "Create": "Create",
+    "New password": "New password",
+    "Asset": "Asset",
+    "Disclaimer: Only change this after you've changed the password locally": "Disclaimer: Only change this after you've changed the password locally",
+    "First name": "First name",
+    "Last name": "Last name",
+    "Email": " Email",
+    "Language": "Language",
+    "Choose language": "Choose language",
+    "Choose Language": "Choose Language",
+    "English": "English",
+    "Reset Password": "Reset Password",
+    "Delete User": "Delete User",
+    "Save User": "Save User",
+    "Add user" : "Add user",
+    "Create new Password" : "Create new Password",
+    "Search":"Search"
 }
