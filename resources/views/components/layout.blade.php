@@ -50,6 +50,7 @@
                 @endif
                 <div class="mobile-header__navigation__item"><a href="/credentials">{{ trans('Credentials') }}</a></div>
                 <div class="mobile-header__navigation__item"><a href="/groups">{{ trans('Groups') }}</a></div>
+                <div class="mobile-header__navigation__item"><a href="/profile">{{ trans('Profile') }}</a></div>
                 @if(Auth::check())
                 <div class="mobile-header__navigation__item"><a href="/logout">{{ trans('Logout') }}</a></div>
                 @else
