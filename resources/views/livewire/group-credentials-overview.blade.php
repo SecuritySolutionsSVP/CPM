@@ -38,7 +38,7 @@
                                     {{ $noneCredential->username }} {{ trans('Passwords for') }} {{ $noneCredential->credentialGroup->name }}
                                 </div>
                                 <div class="group-overview__list__item__icons">
-                                    <i class="fas fa-user-plus group-overview__list__item__icons__get-users" wire:click="addCredential({{$noneCredential->id}})"></i>
+                                    <i class="fas fa-key group-overview__list__item__icons__get-users" wire:click="addCredential({{$noneCredential->id}})"></i>
                                 </div>
                             </div>
                         @endforeach
