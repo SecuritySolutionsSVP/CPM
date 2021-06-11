@@ -60,25 +60,30 @@ class PasswordOverview extends Component
         $credential = $this->selectedCredential;
         $user = Auth::user();
 
-
-        if($credential->is_sensitive) {
-            $token = TwoFactorCredentialToken::create([
-                'credential_id' => $credential->id,
-                'token' => TwoFactorCredentialToken::generateCode(6),
-                'expiration' => Carbon::now()->addMinutes(10),
-            ]);
-
-            Mail::to($user)->send(new TwoFactorCredentialMail($token));
-            $this->token = $token;
-            $this->requireTwoFactor = true;
+        if($this->userCanAccessCredential($credential->id)) {
+            // user is allowed to access password
+            
+            if($credential->is_sensitive) {
+                $token = TwoFactorCredentialToken::create([
+                    'credential_id' => $credential->id,
+                    'token' => TwoFactorCredentialToken::generateCode(6),
+                    'expiration' => Carbon::now()->addMinutes(10),
+                ]);
+                
+                Mail::to($user)->send(new TwoFactorCredentialMail($token));
+                $this->token = $token;
+                $this->requireTwoFactor = true;
+            } else {
+                $this->showPassword($user, $credential);
+            }
         } else {
-            UserCredentialAccessLog::create([
-                'user_id' => $user->id,
-                'credential_id' => $credential->id,
-            ]);
-            $this->requireTwoFactor = false;
-            $this->showPassword = true;
+            $this->error = true;
         }
+    }
+    public function userCanAccessCredential($credentialId) {
+        $user = Auth::user();
+        $userCredentials = $user->getAllCredentialPrivileges();
+        return $user->role->priviledge_level <= 1 || $userCredentials->contains('id', $credentialId);
     }
 
     public function validateTwoFactorCode($formData) {
@@ -86,16 +91,20 @@ class PasswordOverview extends Component
         $user = Auth::user();
 
         if($formData['token'] == $this->token->token) {
-            UserCredentialAccessLog::create([
-                'user_id' => $user->id,
-                'credential_id' => $credential->id
-            ]);
-            $this->error = false;
-            $this->requireTwoFactor = false;
-            $this->showPassword = true;
+            $this->showPassword($user, $credential);
         } else {
             $this->error = true;
         }
+    }
+
+    private function showPassword($user, $credential) {
+        UserCredentialAccessLog::create([
+            'user_id' => $user->id,
+            'credential_id' => $credential->id
+        ]);
+        $this->error = false;
+        $this->requireTwoFactor = false;
+        $this->showPassword = true;
     }
 
     public function createCredential($formData) {

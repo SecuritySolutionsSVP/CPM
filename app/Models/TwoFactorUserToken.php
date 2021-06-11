@@ -37,4 +37,15 @@ class TwoFactorUserToken extends Model
     protected $hidden = [
         'token',
     ];
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'user_id',
+        'token',
+        'expiration'
+    ];
 }

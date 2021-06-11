@@ -22,10 +22,10 @@
             <a href="/"><img class="logo" src="{{ env('BRANDING_IMAGE_PATH', '')}}"></a>
             <div class="header__navigation hidden md:inline-block">
                 <div class="header__navigation__item"><a href="/">{{ trans('Dashboard') }}</a></div>
-                @if(Auth::check() && (Auth::user()->role_id == 1 || Auth::user()->role_id == 2))
+                @if(Auth::check() && Auth::user()->role->priviledge_level <= 2)
                 <div class="header__navigation__item"><a href="/users">{{ trans('Users') }}</a></div>
-                <div class="header__navigation__item"><a href="/credentials">{{ trans('Credentials') }}</a></div>
                 @endif
+                <div class="header__navigation__item"><a href="/credentials">{{ trans('Credentials') }}</a></div>
                 <div class="header__navigation__item"><a href="/groups">{{ trans('Groups') }}</a></div>
                 @if(Auth::check())
                 <div class="header__navigation__item"><a href="/logout">{{ trans('Logout') }}</a></div>
@@ -44,10 +44,10 @@
         </div>   
             <div class="mobile-header__navigation">
                 <div class="mobile-header__navigation__item"><a href="/">{{ trans('Dashboard') }}</a></div>
-                @if(Auth::check() && (Auth::user()->role_id == 1 || Auth::user()->role_id == 2))
+                @if(Auth::check() && Auth::user()->role->priviledge_level <= 2)
                 <div class="mobile-header__navigation__item"><a href="/users">{{ trans('Users') }}</a></div>
-                <div class="mobile-header__navigation__item"><a href="/credentials">{{ trans('Credentials') }}</a></div>
                 @endif
+                <div class="mobile-header__navigation__item"><a href="/credentials">{{ trans('Credentials') }}</a></div>
                 <div class="mobile-header__navigation__item"><a href="/groups">{{ trans('Groups') }}</a></div>
                 @if(Auth::check())
                 <div class="mobile-header__navigation__item"><a href="/logout">{{ trans('Logout') }}</a></div>
