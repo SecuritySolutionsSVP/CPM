@@ -9,7 +9,7 @@
     "Groups": "Grupper",
     "Logout": "Log ud",
     "Passwords for": "Adgangskoder til",
-    "password seen": "adgangskode set",
+    "Password seen": "Adgangskode set",
     "by": "af",
     "See more...": "Se mere...",
     "Save": "Gem",
@@ -49,5 +49,7 @@
     "New asset": "Nyt system",
     "Existing asset": "Eksisterende system",
     "Select existing asset": "Vælg eksisterende system",
-    "Create new credential": "Opret ny adgangskode"
+    "Create new credential": "Opret ny adgangskode",
+    "Profile":"Profil",
+    "Delete" : "Slet"
 }

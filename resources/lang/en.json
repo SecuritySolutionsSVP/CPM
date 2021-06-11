@@ -9,7 +9,7 @@
     "Groups": "Groups",
     "Logout": "Logout",
     "Passwords for": "Passwords for",
-    "password seen": "password accessed",
+    "Password seen": "Password accessed",
     "by": "by",
     "See more...": "See more...",
     "Save": "Save",
@@ -49,5 +49,7 @@
     "New asset": "New asset",
     "Existing asset": "Existing asset",
     "Select existing asset": "Select existing asset",
-    "Create new credential": "Create new credential"
+    "Create new credential": "Create new credential",
+    "Profile":"Profile",
+    "Delete":"Delete"
 }

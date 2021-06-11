@@ -68,7 +68,7 @@
                             ->sortBy('created_at')
                             ->reverse() as $credLog)
                         <div>
-                            {{ trans('password seen') }} {{ Timezone::convertToLocal($credLog->created_at) }} {{ trans('by') }} {{ $credLog->user->fullName() }} {{-- 09:35 - 26/05/2021 --}}
+                            {{ trans('Password seen') }} {{ Timezone::convertToLocal($credLog->created_at) }} {{ trans('by') }} {{ $credLog->user->fullName() }} {{-- 09:35 - 26/05/2021 --}}
                         </div>
                     @endforeach
                 </div>
