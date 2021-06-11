@@ -33,7 +33,7 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/group/{id}/credentials', [GroupController::class, "groupCredentialsView"])->middleware('role:Administrator,Manager')->whereNumber('id');
     
     Route::get('/usergroups/{id}/credentials', [UserGroupController::class, "groupCredentialsView"])->whereNumber('id');
-    Route::get('/user/{id}/credentials', [UserGroupController::class, "myCredentialsView"])->whereNumber('id');
+    Route::get('/user/{id}/credentials', [UserController::class, "userCredentialsView"])->middleware('role:Administrator,Manager')->whereNumber('id');
     
     //Password
     Route::get('/', [CredentialController::class, "notificationCredentialsView"]);
