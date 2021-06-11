@@ -60,6 +60,7 @@ class UserOverview extends Component
         $user = $this->selectedUser;
         $newPass = Str::random(8);
         $user->password = Hash::make($newPass);
+        $user->save();
         Mail::to($user)->send(new UserPasswordReset($user, $newPass));
     }
     public function editUser($formData)
