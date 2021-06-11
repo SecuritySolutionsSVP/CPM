@@ -47,7 +47,7 @@ class GroupUsersOverview extends Component
         if($foundNoneUsers->count() > 0) {
             $this->shownNoneUsers = $foundNoneUsers;
         } else {
-            $this->shownNoneUsers = $this->users;
+            $this->shownNoneUsers = $this->noneUsers;
         }
 
         return view('livewire.group-users-overview');
