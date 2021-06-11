@@ -28,6 +28,25 @@ class CredentialController extends Controller
     }
 
     /** 
+     * Get Group Users
+     * 
+     * @return Credential 
+     */ 
+    public static function getCredentialsInfo(Request $request) {
+        $validator = Validator::make($request->all(), 
+        [ 
+            'id' => 'required',
+        ]);
+
+        $input = $request->only('id');
+        foreach ($input as $key => $value) {
+            $credentials = Credential::find($value);
+        }
+
+        return $credentials;
+    }
+
+    /** 
      * Get User Credentials
      * 
      * @return Credential 
