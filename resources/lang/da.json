@@ -50,6 +50,19 @@
     "Existing asset": "Eksisterende system",
     "Select existing asset": "Vælg eksisterende system",
     "Create new credential": "Opret ny adgangskode",
-    "Profile":"Profil",
-    "Delete" : "Slet"
+    "Verify Password": "Bekræft adgangskode",
+    "Profile": "Profil",
+    "Current Password": "Nuværende kodeord",
+    "Delete": "Slet",
+    "Create new Credential": "Tilføj ny legitimationsoplysninger",
+    "Change password": "Ændre kodeord",
+    "Add User": "Tilføj Bruger",
+    "Back": "Tilbage",
+    "Group Users": "Gruppe Brugere",
+    "Are you sure you want to remove this User?": "Er du sikker på, at du vil fjerne denne bruger?",
+    "Add Credentials": "Tilføj legitimationsoplysninger",
+    "Are you sure you want to remove this Credential?": "Er du sikker på, at du vil fjerne denne legitimationsoplysninger?",
+    "Group Credentials": "Gruppe Legitimationsoplysninger",
+    "Group settings": "Gruppe indstillinger",
+    "Group Name": "Gruppe Navn"
 }

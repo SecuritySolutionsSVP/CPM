@@ -50,6 +50,19 @@
     "Existing asset": "Existing asset",
     "Select existing asset": "Select existing asset",
     "Create new credential": "Create new credential",
-    "Profile":"Profile",
-    "Delete":"Delete"
+    "Verify Password": "Verify Password",
+    "Profile": "Profile",
+    "Current Password": "Current Password",
+    "Delete": "Delete",
+    "Create new Credential": "Create new Credential",
+    "Change password": "Change password",
+    "Add User": "Add User",
+    "Back": "Back",
+    "Group Users": "Group Users",
+    "Are you sure you want to remove this User?": "Are you sure you want to remove this User?",
+    "Add Credentials": "Add Credentials",
+    "Are you sure you want to remove this Credential?": "Are you sure you want to remove this Credential?",
+    "Group Credentials": "Group Credentials",
+    "Group settings": "Group settings",
+    "Group Name": "Group Name"
 }
