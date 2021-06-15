@@ -5,6 +5,7 @@
 /vendor
 !/vendor/bin/sail
 !/vendor/laravel/sail/bin/sail
+!/vendor/laravel/sail/runtimes/*
 .env
 .env.backup
 .phpunit.result.cache
